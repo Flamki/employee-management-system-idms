@@ -146,6 +146,9 @@ export default function LoginPage({ onLogin }) {
         /* Pink divider — tapers at ends */
         .ls-divider {
           height: 1px;
+          width: 78%;
+          margin-left: auto;
+          margin-right: auto;
           margin-top: var(--gap-logo-divider);
           background: linear-gradient(to right,
             transparent 0%, #ff3296 12%, #ff3296 88%, transparent 100%
@@ -155,7 +158,7 @@ export default function LoginPage({ onLogin }) {
         /* Pink heading */
         .ls-welcome {
           text-align: center;
-          font-size: calc(var(--fs-heading) + 2px);
+          font-size: calc(var(--fs-heading) + 4px);
           font-weight: 600;
           color: #ff3296;
           letter-spacing: 0.02em;
