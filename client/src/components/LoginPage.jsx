@@ -102,7 +102,7 @@ export default function LoginPage({ onLogin }) {
           display: flex;
           align-items: center;
           justify-content: center;
-          font-family: "Inter-Regular", "Inter", sans-serif;
+          font-family: "Inter", sans-serif;
           position: relative;
           overflow: hidden;
         }

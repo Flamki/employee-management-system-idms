@@ -1,42 +1,23 @@
 @font-face {
-  font-family: "Inter-Regular";
-  src: url("/sde-kit/Inter/static/Inter_18pt-Regular.ttf?v=20260219") format("truetype");
+  font-family: "Inter";
+  src: url("/sde-kit/Inter/Inter-VariableFont_opsz,wght.ttf?v=20260219") format("truetype");
   font-style: normal;
-  font-weight: 400;
+  font-weight: 100 900;
   font-display: swap;
 }
+
 @font-face {
   font-family: "Inter";
-  src: url("/sde-kit/Inter/static/Inter_18pt-Regular.ttf?v=20260219") format("truetype");
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Inter";
-  src: url("/sde-kit/Inter/static/Inter_18pt-Medium.ttf?v=20260219") format("truetype");
-  font-style: normal;
-  font-weight: 500;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Inter";
-  src: url("/sde-kit/Inter/static/Inter_18pt-SemiBold.ttf?v=20260219") format("truetype");
-  font-style: normal;
-  font-weight: 600;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Inter";
-  src: url("/sde-kit/Inter/static/Inter_18pt-Bold.ttf?v=20260219") format("truetype");
-  font-style: normal;
-  font-weight: 700;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Inter";
-  src: url("/sde-kit/Inter/static/Inter_18pt-Italic.ttf?v=20260219") format("truetype");
+  src: url("/sde-kit/Inter/Inter-Italic-VariableFont_opsz,wght.ttf?v=20260219") format("truetype");
   font-style: italic;
+  font-weight: 100 900;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Inter-Regular";
+  src: url("/sde-kit/Inter/Inter-VariableFont_opsz,wght.ttf?v=20260219") format("truetype");
+  font-style: normal;
   font-weight: 400;
   font-display: swap;
 }
@@ -302,4 +283,21 @@ img.ds-photo-link {
 .ds-table th:last-child,
 .ds-table td:last-child {
   border-right: 0;
+}
+
+html,
+body,
+#root,
+input,
+button,
+select,
+textarea {
+  font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
+  font-synthesis: none;
+}
+
+.ls-root,
+.ds-stage {
+  font-family: "Inter", sans-serif;
 }
