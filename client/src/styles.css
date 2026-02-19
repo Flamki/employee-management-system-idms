@@ -287,10 +287,10 @@ img.ds-photo-link {
 }
 
 .ds-table th {
-  background: #4678be;
-  color: #fff;
+  background: #f9f5ff;
+  color: #4678be;
   font-weight: 400;
-  border-right: 0.75px dotted rgba(255, 255, 255, 0.45);
+  border-right: 0.75px dotted #d3d3d3;
 }
 
 .ds-table td {
