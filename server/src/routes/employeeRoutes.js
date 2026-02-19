@@ -93,7 +93,12 @@ router.post(
   ],
   validateRequest,
   async (req, res) => {
-    const exists = await Employee.findOne({ email: req.body.email.toLowerCase() });
+    if (!req.file) {
+      return res.status(400).json({ message: "Employee photo is required" });
+    }
+
+    const normalizedEmail = req.body.email.toLowerCase();
+    const exists = await Employee.findOne({ email: normalizedEmail });
     if (exists) {
       return res.status(409).json({ message: "Employee email already exists" });
     }
@@ -101,12 +106,12 @@ router.post(
     const employee = await Employee.create({
       fullName: req.body.fullName,
       dob: req.body.dob,
-      email: req.body.email,
+      email: normalizedEmail,
       department: req.body.department,
       phoneNumber: req.body.phoneNumber,
       designation: req.body.designation,
       gender: req.body.gender,
-      photoPath: req.file ? `/uploads/${req.file.filename}` : "",
+      photoPath: `/uploads/${req.file.filename}`,
       createdBy: req.user.userId
     });
 

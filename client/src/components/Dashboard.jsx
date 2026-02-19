@@ -31,6 +31,7 @@ const DEFAULT_FILTERS = {
 
 const DEFAULT_DEPARTMENTS = ["HR", "Engineering", "Finance", "Marketing", "Operations", "Admin"];
 const DEFAULT_DESIGNATIONS = ["Intern", "Executive", "Manager", "Senior Manager", "Lead", "Director"];
+const ROWS_PER_PAGE = 5;
 
 function Dashboard({ user, onLogout }) {
   const [scale, setScale] = useState(1);
@@ -44,6 +45,7 @@ function Dashboard({ user, onLogout }) {
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
   const hasAppliedInitialFilters = useRef(false);
   const userMenuRef = useRef(null);
 
@@ -66,6 +68,7 @@ function Dashboard({ user, onLogout }) {
       const response = await api.get("/employees", { params });
       setEmployees(response.data.employees);
       setMeta(response.data.meta);
+      setCurrentPage(1);
     } catch (requestError) {
       setError(requestError.response?.data?.message || "Failed to load employees");
     } finally {
@@ -148,6 +151,11 @@ function Dashboard({ user, onLogout }) {
 
   const departmentOptions = meta.departments.length ? meta.departments : DEFAULT_DEPARTMENTS;
   const designationOptions = meta.designations.length ? meta.designations : DEFAULT_DESIGNATIONS;
+  const totalPages = Math.max(1, Math.ceil(employees.length / ROWS_PER_PAGE));
+  const paginatedEmployees = useMemo(() => {
+    const start = (currentPage - 1) * ROWS_PER_PAGE;
+    return employees.slice(start, start + ROWS_PER_PAGE);
+  }, [currentPage, employees]);
 
   const handleLogoutClick = async () => {
     setIsUserMenuOpen(false);
@@ -356,7 +364,7 @@ function Dashboard({ user, onLogout }) {
                     </tr>
                   </thead>
                   <tbody>
-                    {employees.slice(0, 5).map((employee) => (
+                    {paginatedEmployees.map((employee) => (
                       <tr key={employee._id}>
                         <td>{employee.fullName}</td>
                         <td>{employee.email}</td>
@@ -411,12 +419,22 @@ function Dashboard({ user, onLogout }) {
           <footer className="ds-footer">
             <div className="ds-total">Total Records -&gt; {employees.length}</div>
             <div className="ds-pagination">
-              <button type="button" aria-label="Previous page">
+              <button
+                type="button"
+                aria-label="Previous page"
+                onClick={() => setCurrentPage((prev) => Math.max(1, prev - 1))}
+                disabled={currentPage <= 1}
+              >
                 &lt;- 
               </button>
               <span>Page</span>
-              <span className="ds-page-no">1</span>
-              <button type="button" aria-label="Next page">
+              <span className="ds-page-no">{currentPage}</span>
+              <button
+                type="button"
+                aria-label="Next page"
+                onClick={() => setCurrentPage((prev) => Math.min(totalPages, prev + 1))}
+                disabled={currentPage >= totalPages}
+              >
                 -&gt;
               </button>
             </div>

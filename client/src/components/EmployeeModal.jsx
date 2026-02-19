@@ -52,8 +52,9 @@ function EmployeeModal({
     if (!departmentOptions.includes(form.department)) return "Department must be selected from dropdown";
     if (!designationOptions.includes(form.designation)) return "Designation must be selected from dropdown";
     if (!["Male", "Female", "Other"].includes(form.gender)) return "Gender is required";
+    if (!isEditMode && !form.photo) return "Employee photo is required";
     return "";
-  }, [form, departmentOptions, designationOptions]);
+  }, [form, departmentOptions, designationOptions, isEditMode]);
 
   const submit = async (event) => {
     event.preventDefault();
