@@ -366,3 +366,169 @@ img.ds-photo-link {
   color: #7b7b7b;
   padding-top: 4px;
 }
+
+/* Screen_3 modal pixel-alignment */
+.ds-modal-panel {
+  border: 1px solid #969696;
+  border-radius: 1px;
+  box-shadow: 0 0 9px rgba(0, 0, 0, 0.25);
+  overflow: hidden;
+}
+
+.ds-modal-head {
+  height: 43px;
+  padding: 0 18px;
+  border-top: 4px solid #ff0096;
+  border-bottom: 0.75px solid #4678be;
+  background: #fff;
+}
+
+.ds-modal-head h2 {
+  font-size: 16.53px;
+  font-weight: 400;
+  color: #4678be;
+  line-height: 1;
+}
+
+.ds-modal-head button {
+  color: #7b7b7b;
+}
+
+.ds-modal-body {
+  left: 22.91px;
+  top: 72px;
+  width: 910px;
+  grid-template-columns: repeat(4, 200.34px);
+  column-gap: 36.41px;
+  row-gap: 28.96px;
+}
+
+.ds-field {
+  display: grid;
+  gap: 5.94px;
+  min-width: 0;
+}
+
+.ds-field span {
+  color: #4678be;
+  font-size: 11.84px;
+  font-weight: 400;
+}
+
+.ds-field input,
+.ds-field select,
+.ds-file-picker {
+  height: 27.16px;
+  border: 0.5px solid #969696;
+  border-radius: 2.01px;
+  padding: 0 8px;
+  font-size: 11.84px;
+  color: #7b7b7b;
+  background: #fff;
+}
+
+.ds-field select {
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url("/sde-kit/Assets/dropdown-custom.svg");
+  background-repeat: no-repeat;
+  background-position: right 7px center;
+  background-size: 10px 6px;
+  padding-right: 24px;
+}
+
+.ds-date-wrap {
+  position: relative;
+  height: 27.16px;
+  border: 0.5px solid #969696;
+  border-radius: 2.01px;
+  background: #fff;
+  padding: 0 28px 0 8px;
+  display: flex;
+  align-items: center;
+}
+
+.ds-date-input {
+  width: 100%;
+  min-width: 0;
+  height: 100%;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  padding: 0;
+  font-size: 11.84px;
+  color: transparent;
+  caret-color: #7b7b7b;
+}
+
+.ds-date-input.has-value {
+  color: #7b7b7b;
+}
+
+.ds-date-input::-webkit-calendar-picker-indicator {
+  opacity: 0;
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+}
+
+.ds-date-placeholder {
+  position: absolute;
+  left: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 11.84px;
+  color: #7b7b7b;
+  pointer-events: none;
+}
+
+.ds-date-btn {
+  position: absolute;
+  right: 7px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 14px;
+  height: 14px;
+  border: 0;
+  background: transparent;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.ds-date-btn img {
+  width: 13px;
+  height: 13px;
+}
+
+.ds-file-picker {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.ds-file-picker-text {
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: #7b7b7b;
+  font-size: 11.84px;
+}
+
+.ds-file-picker-text.has-file {
+  color: #46505a;
+}
+
+.ds-file-input-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}

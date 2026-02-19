@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 
 const DEFAULT_DEPARTMENTS = ["HR", "Engineering", "Finance", "Marketing", "Operations", "Admin"];
 const DEFAULT_DESIGNATIONS = ["Intern", "Executive", "Manager", "Senior Manager", "Lead", "Director"];
@@ -50,6 +50,8 @@ function EmployeeModal({
   const [form, setForm] = useState(buildInitialForm(initialValues));
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState("");
+  const dobInputRef = useRef(null);
+  const fileInputRef = useRef(null);
   const maxDob = useMemo(() => getMaxDob(), []);
 
   const departmentOptions = departments.length ? departments : DEFAULT_DEPARTMENTS;
@@ -110,6 +112,20 @@ function EmployeeModal({
     }
   };
 
+  const openDobPicker = () => {
+    const input = dobInputRef.current;
+    if (!input) return;
+    if (typeof input.showPicker === "function") {
+      input.showPicker();
+      return;
+    }
+    input.focus();
+  };
+
+  const openFilePicker = () => {
+    fileInputRef.current?.click();
+  };
+
   return (
     <div className="ds-modal-overlay" role="dialog" aria-modal="true">
       <form className="ds-modal-panel" onSubmit={submit}>
@@ -164,12 +180,28 @@ function EmployeeModal({
 
           <label className="ds-field">
             <span>Date of Birth *</span>
-            <input
-              type="date"
-              max={maxDob}
-              value={form.dob}
-              onChange={(event) => setForm((prev) => ({ ...prev, dob: event.target.value }))}
-            />
+            <div className="ds-date-wrap" onClick={openDobPicker}>
+              {!form.dob ? <span className="ds-date-placeholder">dd-mm-yyyy</span> : null}
+              <input
+                ref={dobInputRef}
+                className={`ds-date-input${form.dob ? " has-value" : ""}`}
+                type="date"
+                max={maxDob}
+                value={form.dob}
+                onChange={(event) => setForm((prev) => ({ ...prev, dob: event.target.value }))}
+              />
+              <button
+                type="button"
+                className="ds-date-btn"
+                onClick={(event) => {
+                  event.stopPropagation();
+                  openDobPicker();
+                }}
+                aria-label="Open date picker"
+              >
+                <img src="/sde-kit/Assets/date-icon.svg" alt="" aria-hidden="true" />
+              </button>
+            </div>
           </label>
 
           <label className="ds-field">
@@ -204,8 +236,25 @@ function EmployeeModal({
 
           <label className="ds-field">
             <span>Employee Photo {isEditMode ? "" : "*"}</span>
+            <div
+              className="ds-file-picker"
+              role="button"
+              tabIndex={0}
+              onClick={openFilePicker}
+              onKeyDown={(event) => {
+                if (event.key === "Enter" || event.key === " ") {
+                  event.preventDefault();
+                  openFilePicker();
+                }
+              }}
+            >
+              <span className={`ds-file-picker-text${form.photo ? " has-file" : ""}`}>
+                {form.photo ? form.photo.name : "Upload Photo"}
+              </span>
+            </div>
             <input
-              className="ds-file-input"
+              ref={fileInputRef}
+              className="ds-file-input-hidden"
               type="file"
               accept="image/*"
               onChange={(event) => setForm((prev) => ({ ...prev, photo: event.target.files?.[0] || null }))}
