@@ -135,6 +135,7 @@ function EmployeeModal({
             x
           </button>
         </div>
+        <div className="ds-modal-divider ds-modal-divider-top" aria-hidden="true" />
 
         <div className="ds-modal-body">
           <label className="ds-field">
@@ -181,10 +182,9 @@ function EmployeeModal({
           <label className="ds-field">
             <span>Date of Birth *</span>
             <div className="ds-date-wrap" onClick={openDobPicker}>
-              {!form.dob ? <span className="ds-date-placeholder">dd-mm-yyyy</span> : null}
               <input
                 ref={dobInputRef}
-                className={`ds-date-input${form.dob ? " has-value" : ""}`}
+                className="ds-date-input"
                 type="date"
                 max={maxDob}
                 value={form.dob}
@@ -263,6 +263,7 @@ function EmployeeModal({
         </div>
 
         {error ? <p className="ds-modal-error">{error}</p> : null}
+        <div className="ds-modal-divider ds-modal-divider-bottom" aria-hidden="true" />
 
         <div className="ds-modal-foot">
           <button type="submit" disabled={isSubmitting}>
