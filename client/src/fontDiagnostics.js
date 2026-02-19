@@ -33,18 +33,33 @@ async function checkUrl(url) {
 }
 
 export async function runInterFontDiagnostics() {
+  try {
+    await document.fonts.ready;
+  } catch {
+    // Continue to explicit checks below.
+  }
+
   const checks = await Promise.all(INTER_FONT_URLS.map((url) => checkUrl(url)));
   const allRequestsOk = checks.every(Boolean);
 
   try {
-    await document.fonts.load('400 16px "Inter"');
-    const interLoaded =
-      document.fonts.check('400 16px "Inter"') &&
-      document.fonts.check('600 16px "Inter"');
+    await Promise.all([
+      document.fonts.load('400 16px "Inter"'),
+      document.fonts.load('600 16px "Inter"'),
+      document.fonts.load('700 16px "Inter"'),
+    ]);
+
+    const loaded400 = document.fonts.check('400 16px "Inter"');
+    const loaded600 = document.fonts.check('600 16px "Inter"');
+    const loaded700 = document.fonts.check('700 16px "Inter"');
+    const interLoaded = loaded400 && loaded600 && loaded700;
 
     if (!interLoaded) {
       console.error("[FontCheck] Inter family is not active after load check", {
         family: "Inter",
+        loaded400,
+        loaded600,
+        loaded700,
       });
       return;
     }
@@ -59,4 +74,3 @@ export async function runInterFontDiagnostics() {
     console.error("[FontCheck] Inter family resolved, but one or more font files failed to fetch.");
   }
 }
-
