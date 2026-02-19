@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 13.7 14.32">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #4678be;
+      }
+    </style>
+  </defs>
+  <g id="Layer_1-2" data-name="Layer 1">
+    <g id="Assets">
+      <g id="search">
+        <path class="cls-1" d="M10.94,10.5c.99-1.12,1.6-2.59,1.6-4.19,0-3.48-2.81-6.31-6.27-6.31S0,2.82,0,6.31s2.81,6.3,6.27,6.3c1.32,0,2.55-.41,3.55-1.12l2.83,2.83,1.05-1.05-2.77-2.77h0ZM6.27,11.53c-2.87,0-5.2-2.34-5.2-5.23S3.4,1.08,6.27,1.08s5.2,2.34,5.2,5.23-2.33,5.23-5.2,5.23h0Z"/>
+      </g>
+    </g>
+  </g>
+</svg>

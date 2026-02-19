@@ -1,0 +1,12 @@
+node_modules
+.env
+.DS_Store
+coverage
+dist
+build
+assessment_extracted.txt
+assessment_pdf_text.txt
+server/uploads/*
+!server/uploads/.gitkeep
+server/server/uploads/*
+!server/server/uploads/.gitkeep

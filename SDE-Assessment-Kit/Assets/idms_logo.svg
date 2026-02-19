@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 103.08 25.01">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: url(#linear-gradient-2);
+      }
+
+      .cls-2 {
+        fill: url(#linear-gradient-4);
+      }
+
+      .cls-3 {
+        fill: url(#linear-gradient-3);
+      }
+
+      .cls-4 {
+        fill: url(#linear-gradient);
+      }
+    </style>
+    <linearGradient id="linear-gradient" x1="2.65" y1="-1.75" x2="2.65" y2="25.39" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#f0a"/>
+      <stop offset=".3" stop-color="#fc00ac"/>
+      <stop offset=".48" stop-color="#f400b2"/>
+      <stop offset=".63" stop-color="#e500be"/>
+      <stop offset=".76" stop-color="#d100ce"/>
+      <stop offset=".88" stop-color="#b700e3"/>
+      <stop offset=".99" stop-color="#9700fd"/>
+      <stop offset="1" stop-color="#9600ff"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-2" x1="23.5" y1="-1.75" x2="23.5" y2="25.39" xlink:href="#linear-gradient"/>
+    <linearGradient id="linear-gradient-3" x1="57.6" y1="-1.75" x2="57.6" y2="25.39" xlink:href="#linear-gradient"/>
+    <linearGradient id="linear-gradient-4" x1="91.14" y1="-1.75" x2="91.14" y2="25.39" xlink:href="#linear-gradient"/>
+  </defs>
+  <g id="Layer_1-2" data-name="Layer 1">
+    <g>
+      <path class="cls-4" d="M0,0h5.31v25.01H0V0Z"/>
+      <path class="cls-1" d="M10.99,0h12.89c8.07,0,12.13,3.22,12.13,9.7v5.61c0,6.48-4.06,9.7-12.13,9.7h-12.89V0ZM23.12,21.79c5.04,0,7.58-2.01,7.58-6.06v-6.44c0-4.06-2.54-6.06-7.58-6.06h-6.82v18.57h6.82Z"/>
+      <path class="cls-3" d="M41.31,0h6.82l9.47,19.86L67.08,0h6.82v25.01h-5.31V7.54l-8.34,17.47h-5.31l-8.34-17.47v17.47h-5.31V0Z"/>
+      <path class="cls-2" d="M79.2,21.79h17.06c1.02,0,1.52-.42,1.52-1.21v-6.1c0-.8-.49-1.21-1.52-1.21h-11.37c-3.79,0-5.69-1.52-5.69-4.55v-4.17c0-3.03,1.9-4.55,5.69-4.55h16.3v3.22h-15.16c-1.02,0-1.52.42-1.52,1.21v4.4c0,.8.49,1.21,1.52,1.21h11.37c3.79,0,5.69,1.52,5.69,4.55v5.87c0,3.03-1.9,4.55-5.69,4.55h-18.19v-3.22Z"/>
+    </g>
+  </g>
+</svg>

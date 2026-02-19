@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 23.5 11.94">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #fa0096;
+      }
+
+      .cls-2 {
+        fill: none;
+        isolation: isolate;
+        opacity: .75;
+        stroke: #fa0096;
+        stroke-miterlimit: 10;
+        stroke-width: .39px;
+      }
+    </style>
+  </defs>
+  <g id="Layer_3" data-name="Layer 3">
+    <g id="Assets">
+      <g id="action">
+        <rect class="cls-2" x=".19" y=".19" width="23.11" height="11.55" rx="1.56" ry="1.56"/>
+        <circle class="cls-1" cx="4.82" cy="5.97" r="1.92"/>
+        <circle class="cls-1" cx="11.75" cy="5.97" r="1.92"/>
+        <circle class="cls-1" cx="18.68" cy="5.97" r="1.92"/>
+      </g>
+    </g>
+  </g>
+</svg>
