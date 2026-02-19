@@ -199,13 +199,24 @@ export default function LoginPage({ onLogin }) {
           border: none;
           outline: none;
           background: transparent;
-          font-size: var(--fs-input);
+          font-size: 14px;
+          font-weight: 500;
+          line-height: 1.2;
           font-family: inherit;
-          color: #5a5a5a;
+          color: #4f5660;
+          letter-spacing: 0.01em;
           min-width: 0;
         }
         .ls-input-row input::placeholder {
-          color: #b8b8b8;
+          color: #8f97a3;
+          font-size: 13px;
+          font-weight: 400;
+          letter-spacing: 0.01em;
+          opacity: 1;
+          transition: color 0.12s ease;
+        }
+        .ls-input-row input:focus::placeholder {
+          color: #b3bcc8;
         }
 
         /* Gap between field groups */
