@@ -22,8 +22,16 @@ export const clearAuthToken = () => {
   sessionStorage.removeItem(SESSION_TOKEN_STORAGE_KEY);
 };
 
+const rawApiBaseUrl = (import.meta.env.VITE_API_BASE_URL || "").trim();
+const normalizedApiBaseUrl = rawApiBaseUrl.replace(/\/+$/, "");
+const baseURL = normalizedApiBaseUrl
+  ? normalizedApiBaseUrl.endsWith("/api")
+    ? normalizedApiBaseUrl
+    : `${normalizedApiBaseUrl}/api`
+  : "/api";
+
 const api = axios.create({
-  baseURL: import.meta.env.VITE_API_BASE_URL || "/api",
+  baseURL,
   withCredentials: true
 });
 
