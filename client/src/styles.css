@@ -325,3 +325,26 @@ textarea {
 .ds-stage {
   font-family: "IDMSInter", sans-serif;
 }
+
+/* Screen_4 icon scale tuning */
+.ds-nav-icon {
+  width: 26px;
+}
+
+.ds-nav-icon img {
+  width: auto;
+  height: 20px;
+  max-width: 26px;
+}
+
+.ds-photo-link,
+.ds-photo-link img,
+img.ds-photo-link {
+  width: 21px;
+  height: 11.16px;
+}
+
+.ds-action-icon {
+  width: 25px;
+  height: 12.68px;
+}
