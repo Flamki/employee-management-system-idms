@@ -1,5 +1,5 @@
 @font-face {
-  font-family: "Inter";
+  font-family: "IDMSInter";
   src: url("/sde-kit/Inter/static/Inter_18pt-Light.ttf?v=20260219") format("truetype");
   font-style: normal;
   font-weight: 300;
@@ -7,7 +7,7 @@
 }
 
 @font-face {
-  font-family: "Inter";
+  font-family: "IDMSInter";
   src: url("/sde-kit/Inter/static/Inter_18pt-Regular.ttf?v=20260219") format("truetype");
   font-style: normal;
   font-weight: 400;
@@ -15,7 +15,7 @@
 }
 
 @font-face {
-  font-family: "Inter";
+  font-family: "IDMSInter";
   src: url("/sde-kit/Inter/static/Inter_18pt-Medium.ttf?v=20260219") format("truetype");
   font-style: normal;
   font-weight: 500;
@@ -23,7 +23,7 @@
 }
 
 @font-face {
-  font-family: "Inter";
+  font-family: "IDMSInter";
   src: url("/sde-kit/Inter/static/Inter_18pt-SemiBold.ttf?v=20260219") format("truetype");
   font-style: normal;
   font-weight: 600;
@@ -31,7 +31,7 @@
 }
 
 @font-face {
-  font-family: "Inter";
+  font-family: "IDMSInter";
   src: url("/sde-kit/Inter/static/Inter_18pt-Bold.ttf?v=20260219") format("truetype");
   font-style: normal;
   font-weight: 700;
@@ -39,7 +39,7 @@
 }
 
 @font-face {
-  font-family: "Inter";
+  font-family: "IDMSInter";
   src: url("/sde-kit/Inter/static/Inter_18pt-Italic.ttf?v=20260219") format("truetype");
   font-style: italic;
   font-weight: 400;
@@ -316,12 +316,12 @@ input,
 button,
 select,
 textarea {
-  font-family: "Inter", sans-serif;
+  font-family: "IDMSInter", sans-serif;
   font-optical-sizing: none;
   font-synthesis: none;
 }
 
 .ls-root,
 .ds-stage {
-  font-family: "Inter", sans-serif;
+  font-family: "IDMSInter", sans-serif;
 }
