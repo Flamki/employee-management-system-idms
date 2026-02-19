@@ -248,7 +248,8 @@ img.ds-photo-link {
 .ds-table-wrap {
   left: 27.42px;
   width: 1117.81px;
-  height: 286.29px;
+  min-height: 96px;
+  height: auto;
   overflow: visible;
 }
 
@@ -282,16 +283,16 @@ img.ds-photo-link {
 
 .ds-table th,
 .ds-table td {
-  height: 31.81px;
   min-height: 31.81px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  padding: 6px 8px;
   vertical-align: middle;
   font-family: "Inter", sans-serif;
 }
 
 .ds-table th {
+  white-space: nowrap;
+  overflow: visible;
+  text-overflow: clip;
   background: #f9f5ff;
   color: #4678be;
   font-weight: 400;
@@ -299,6 +300,9 @@ img.ds-photo-link {
 }
 
 .ds-table td {
+  white-space: normal;
+  overflow-wrap: anywhere;
+  word-break: break-word;
   border-top: 0.75px dotted #d3d3d3;
   border-right: 0.75px dotted #d3d3d3;
   color: #46505a;

@@ -1,8 +1,6 @@
 const INTER_FONT_URLS = [
-  "/sde-kit/Inter/static/Inter_18pt-Regular.ttf?v=20260219",
-  "/sde-kit/Inter/static/Inter_18pt-Medium.ttf?v=20260219",
-  "/sde-kit/Inter/static/Inter_18pt-SemiBold.ttf?v=20260219",
-  "/sde-kit/Inter/static/Inter_18pt-Bold.ttf?v=20260219",
+  "/sde-kit/Inter/Inter-VariableFont_opsz,wght.ttf?v=20260219",
+  "/sde-kit/Inter/Inter-Italic-VariableFont_opsz,wght.ttf?v=20260219",
 ];
 
 async function checkUrl(url) {
@@ -72,5 +70,13 @@ export async function runInterFontDiagnostics() {
 
   if (!allRequestsOk) {
     console.error("[FontCheck] Inter family resolved, but one or more font files failed to fetch.");
+    return;
   }
+
+  console.info("[FontCheck] Inter variable font loaded successfully", {
+    filesChecked: INTER_FONT_URLS,
+    loaded400: true,
+    loaded600: true,
+    loaded700: true,
+  });
 }

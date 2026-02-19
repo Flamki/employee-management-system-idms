@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import api, { clearAuthToken } from "./api";
+import { hasAuthToken } from "./api";
 import LoginPage from "./components/LoginPage";
 import Dashboard from "./components/Dashboard";
 
@@ -9,6 +10,11 @@ function App() {
 
   useEffect(() => {
     const loadMe = async () => {
+      if (!hasAuthToken()) {
+        setAuthLoading(false);
+        return;
+      }
+
       try {
         const response = await api.get("/auth/me");
         setUser(response.data.user);

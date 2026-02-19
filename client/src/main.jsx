@@ -3,6 +3,7 @@ import ReactDOM from "react-dom/client";
 import App from "./App";
 import { runInterFontDiagnostics } from "./fontDiagnostics";
 import "./styles.css";
+import "./inter-font.css";
 
 runInterFontDiagnostics();
 

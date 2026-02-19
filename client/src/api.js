@@ -6,6 +6,8 @@ const SESSION_TOKEN_STORAGE_KEY = "ems_session_token";
 const readToken = () =>
   localStorage.getItem(TOKEN_STORAGE_KEY) || sessionStorage.getItem(SESSION_TOKEN_STORAGE_KEY) || "";
 
+export const hasAuthToken = () => Boolean(readToken());
+
 export const setAuthToken = (token, remember = true) => {
   if (!token) return;
   if (remember) {

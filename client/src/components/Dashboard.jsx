@@ -28,6 +28,9 @@ const DEFAULT_FILTERS = {
   designation: "",
   gender: ""
 };
+const ROWS_PER_PAGE = 11;
+const TABLE_HEADER_ROW_HEIGHT = 31.81;
+const TABLE_BODY_ROW_HEIGHT = 31.81;
 
 const DEFAULT_DEPARTMENTS = ["HR", "Engineering", "Finance", "Marketing", "Operations", "Admin"];
 const DEFAULT_DESIGNATIONS = ["Intern", "Executive", "Manager", "Senior Manager", "Lead", "Director"];
@@ -44,6 +47,7 @@ function Dashboard({ user, onLogout }) {
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
   const hasAppliedInitialFilters = useRef(false);
   const userMenuRef = useRef(null);
 
@@ -148,6 +152,19 @@ function Dashboard({ user, onLogout }) {
 
   const departmentOptions = meta.departments.length ? meta.departments : DEFAULT_DEPARTMENTS;
   const designationOptions = meta.designations.length ? meta.designations : DEFAULT_DESIGNATIONS;
+  const totalPages = Math.max(1, Math.ceil(employees.length / ROWS_PER_PAGE));
+  const pageStart = (currentPage - 1) * ROWS_PER_PAGE;
+  const paginatedEmployees = employees.slice(pageStart, pageStart + ROWS_PER_PAGE);
+  const tableWrapHeight =
+    TABLE_HEADER_ROW_HEIGHT + Math.max(paginatedEmployees.length, 1) * TABLE_BODY_ROW_HEIGHT + 1;
+
+  useEffect(() => {
+    setCurrentPage((prev) => Math.min(prev, totalPages));
+  }, [totalPages]);
+
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [filters.search, filters.department, filters.designation, filters.gender]);
 
   const handleLogoutClick = async () => {
     setIsUserMenuOpen(false);
@@ -337,7 +354,10 @@ function Dashboard({ user, onLogout }) {
               </div>
             </div>
 
-            <section className="ds-table-wrap">
+            <section
+              className="ds-table-wrap"
+              style={employees.length ? { height: `${tableWrapHeight}px` } : undefined}
+            >
               {loading ? (
                 <div className="ds-empty-state">Loading...</div>
               ) : employees.length ? (
@@ -367,7 +387,7 @@ function Dashboard({ user, onLogout }) {
                     </tr>
                   </thead>
                   <tbody>
-                    {employees.map((employee) => (
+                    {paginatedEmployees.map((employee) => (
                       <tr key={employee._id}>
                         <td>{employee.fullName}</td>
                         <td>{employee.email}</td>
@@ -422,12 +442,28 @@ function Dashboard({ user, onLogout }) {
           <footer className="ds-footer">
             <div className="ds-total">Total Records -&gt; {employees.length}</div>
             <div className="ds-pagination">
-              <button type="button" aria-label="Previous page" disabled>
+              <button
+                type="button"
+                aria-label="Previous page"
+                disabled={currentPage <= 1}
+                onClick={() => {
+                  setActiveActionMenuId(null);
+                  setCurrentPage((prev) => Math.max(1, prev - 1));
+                }}
+              >
                 &lt;- 
               </button>
               <span>Page</span>
-              <span className="ds-page-no">1</span>
-              <button type="button" aria-label="Next page" disabled>
+              <span className="ds-page-no">{currentPage}</span>
+              <button
+                type="button"
+                aria-label="Next page"
+                disabled={currentPage >= totalPages}
+                onClick={() => {
+                  setActiveActionMenuId(null);
+                  setCurrentPage((prev) => Math.min(totalPages, prev + 1));
+                }}
+              >
                 -&gt;
               </button>
             </div>
