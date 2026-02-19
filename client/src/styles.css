@@ -352,3 +352,32 @@ img.ds-photo-link {
   width: 25px;
   height: 12.68px;
 }
+
+/* Modal file input overflow fix */
+.ds-modal-body .ds-field {
+  min-width: 0;
+}
+
+.ds-file-input {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 11px;
+}
+
+.ds-file-input::file-selector-button {
+  margin-right: 8px;
+  max-width: 88px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ds-file-input::-webkit-file-upload-button {
+  margin-right: 8px;
+  max-width: 88px;
+}

@@ -205,6 +205,7 @@ function EmployeeModal({
           <label className="ds-field">
             <span>Employee Photo {isEditMode ? "" : "*"}</span>
             <input
+              className="ds-file-input"
               type="file"
               accept="image/*"
               onChange={(event) => setForm((prev) => ({ ...prev, photo: event.target.files?.[0] || null }))}
