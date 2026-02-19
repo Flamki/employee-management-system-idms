@@ -155,8 +155,8 @@ export default function LoginPage({ onLogin }) {
         /* Pink heading */
         .ls-welcome {
           text-align: center;
-          font-size: var(--fs-heading);
-          font-weight: 400;
+          font-size: calc(var(--fs-heading) + 2px);
+          font-weight: 600;
           color: #ff3296;
           letter-spacing: 0.02em;
           margin-top: var(--gap-divider-title);
@@ -330,11 +330,11 @@ export default function LoginPage({ onLogin }) {
                 <div className="ls-fields">
 
                   <div className="ls-field">
-                    <label className="ls-label">Username</label>
+                    <label className="ls-label">User Name</label>
                     <div className="ls-input-row">
                       <input
                         type="text"
-                        placeholder="Enter Username"
+                        placeholder="Enter User Name"
                         value={form.identity}
                         onChange={(e) => setForm((p) => ({ ...p, identity: e.target.value }))}
                         required
