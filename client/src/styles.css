@@ -826,3 +826,24 @@ img.ds-photo-link {
   text-overflow: clip;
   line-height: 1;
 }
+
+/* Reduce harsh/highlighted table grid lines */
+.ds-stage .ds-table-wrap {
+  border: 0.5px solid #d5dbe4 !important;
+}
+
+.ds-stage .ds-table th {
+  border-top: 0.5px solid #d5dbe4 !important;
+  border-right: 0.5px dotted #d5dbe4 !important;
+  border-bottom: 0.5px dotted #d5dbe4 !important;
+}
+
+.ds-stage .ds-table td {
+  border-top: 0.5px dotted #d5dbe4 !important;
+  border-right: 0.5px dotted #d5dbe4 !important;
+}
+
+.ds-stage .ds-table th:last-child,
+.ds-stage .ds-table td:last-child {
+  border-right: 0 !important;
+}
