@@ -102,7 +102,7 @@ export default function LoginPage({ onLogin }) {
           display: flex;
           align-items: center;
           justify-content: center;
-          font-family: "IDMSInter", sans-serif;
+          font-family: "Inter", sans-serif;
           position: relative;
           overflow: hidden;
         }
@@ -124,9 +124,9 @@ export default function LoginPage({ onLogin }) {
         /* Card: w=32.94vw, border=#ff3296, rx=4px, drop-shadow */
         .ls-card {
           background: #fff;
-          border: 1px solid #ff3296;
-          border-radius: 4px;
-          box-shadow: 0 0 6px rgba(0,0,0,0.20);
+          border: 1px solid #ff4da6;
+          border-radius: 8px;
+          box-shadow: 0 10px 30px rgba(0,0,0,0.15);
           width: var(--cw);
         }
 
@@ -138,6 +138,7 @@ export default function LoginPage({ onLogin }) {
         .ls-brand {
           display: flex;
           justify-content: center;
+          margin-bottom: 10px;
         }
         .ls-logo-wrap {
           width: var(--logo-w);
@@ -161,7 +162,7 @@ export default function LoginPage({ onLogin }) {
           font-size: calc(var(--fs-heading) + 4px);
           font-weight: 600;
           color: #ff3296;
-          letter-spacing: 0.02em;
+          letter-spacing: 2px;
           margin-top: var(--gap-divider-title);
         }
 
@@ -185,9 +186,9 @@ export default function LoginPage({ onLogin }) {
           display: flex;
           align-items: center;
           border: 0.3px solid #5a5a5a;
-          border-radius: 2px;
-          height: var(--input-h);
-          padding: 0 calc(var(--cw) * 0.022);
+          border-radius: 4px;
+          height: 44px;
+          padding: 0 14px;
           background: #fff;
         }
         .ls-input-row:focus-within {
@@ -290,12 +291,12 @@ export default function LoginPage({ onLogin }) {
         .ls-submit {
           display: block;
           width: 100%;
-          height: var(--btn-h);
+          height: 44px;
           margin-top: var(--gap-opts-btn);
           background: #4678be;
           color: #fff;
           border: none;
-          border-radius: 2.41px;
+          border-radius: 6px;
           font-size: var(--fs-btn);
           font-weight: 400;
           font-family: inherit;
