@@ -427,7 +427,7 @@ img.ds-photo-link {
 
 .ds-modal-divider-bottom {
   top: auto;
-  bottom: 37px;
+  bottom: 41px;
 }
 
 .ds-modal-head h2 {
@@ -447,7 +447,7 @@ img.ds-photo-link {
   width: 910px;
   grid-template-columns: repeat(4, 200.34px);
   column-gap: 36.41px;
-  row-gap: 28.96px;
+  row-gap: 22.5px;
 }
 
 .ds-field {
@@ -460,6 +460,7 @@ img.ds-photo-link {
   color: #4678be;
   font-size: 11.84px;
   font-weight: 400;
+  line-height: 1;
 }
 
 .ds-field input,
@@ -506,16 +507,24 @@ img.ds-photo-link {
   font-size: 11.84px;
   color: #7b7b7b;
   caret-color: #7b7b7b;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: textfield;
+}
+
+.ds-date-input::-webkit-datetime-edit,
+.ds-date-input::-webkit-datetime-edit-fields-wrapper {
+  padding: 0;
+}
+
+.ds-date-input::-webkit-clear-button,
+.ds-date-input::-webkit-inner-spin-button {
+  display: none;
 }
 
 .ds-date-input::-webkit-calendar-picker-indicator {
   opacity: 0;
-  position: absolute;
-  right: 0;
-  top: 0;
-  width: 24px;
-  height: 100%;
-  cursor: pointer;
+  pointer-events: none;
 }
 
 .ds-date-btn {
