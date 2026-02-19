@@ -1,6 +1,7 @@
 @font-face {
   font-family: "Inter";
-  src: url("/sde-kit/Inter/Inter-VariableFont_opsz,wght.ttf?v=20260219") format("truetype");
+  src: url("/sde-kit/Inter/Inter-VariableFont_opsz,wght.ttf?v=20260219")
+    format("truetype");
   font-style: normal;
   font-weight: 100 900;
   font-display: swap;
@@ -8,7 +9,8 @@
 
 @font-face {
   font-family: "Inter";
-  src: url("/sde-kit/Inter/Inter-Italic-VariableFont_opsz,wght.ttf?v=20260219") format("truetype");
+  src: url("/sde-kit/Inter/Inter-Italic-VariableFont_opsz,wght.ttf?v=20260219")
+    format("truetype");
   font-style: italic;
   font-weight: 100 900;
   font-display: swap;
@@ -16,7 +18,8 @@
 
 @font-face {
   font-family: "IDMSInter";
-  src: url("/sde-kit/Inter/Inter-VariableFont_opsz,wght.ttf?v=20260219") format("truetype");
+  src: url("/sde-kit/Inter/Inter-VariableFont_opsz,wght.ttf?v=20260219")
+    format("truetype");
   font-style: normal;
   font-weight: 100 900;
   font-display: swap;
@@ -24,7 +27,8 @@
 
 @font-face {
   font-family: "IDMSInter";
-  src: url("/sde-kit/Inter/Inter-Italic-VariableFont_opsz,wght.ttf?v=20260219") format("truetype");
+  src: url("/sde-kit/Inter/Inter-Italic-VariableFont_opsz,wght.ttf?v=20260219")
+    format("truetype");
   font-style: italic;
   font-weight: 100 900;
   font-display: swap;

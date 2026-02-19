@@ -11,8 +11,22 @@ const { ensureUploadDir, getAllUploadDirs } = require("../config/uploads");
 
 const router = express.Router();
 
-const allowedDepartments = ["HR", "Engineering", "Finance", "Marketing", "Operations", "Admin"];
-const allowedDesignations = ["Intern", "Executive", "Manager", "Senior Manager", "Lead", "Director"];
+const allowedDepartments = [
+  "HR",
+  "Engineering",
+  "Finance",
+  "Marketing",
+  "Operations",
+  "Admin",
+];
+const allowedDesignations = [
+  "Intern",
+  "Executive",
+  "Manager",
+  "Senior Manager",
+  "Lead",
+  "Director",
+];
 
 const isDateBeforeToday = (value) => {
   const parsed = new Date(value);
@@ -40,9 +54,11 @@ const uploadDirs = getAllUploadDirs();
 const storage = multer.diskStorage({
   destination: (req, file, cb) => cb(null, uploadDir),
   filename: (req, file, cb) => {
-    const safeName = file.originalname.replace(/\s+/g, "_").replace(/[^a-zA-Z0-9_.-]/g, "");
+    const safeName = file.originalname
+      .replace(/\s+/g, "_")
+      .replace(/[^a-zA-Z0-9_.-]/g, "");
     cb(null, `${Date.now()}-${safeName}`);
-  }
+  },
 });
 
 const upload = multer({
@@ -53,7 +69,7 @@ const upload = multer({
       return cb(new Error("Only image uploads are allowed"));
     }
     return cb(null, true);
-  }
+  },
 });
 
 const removeUploadedPhoto = (photoPath) => {
@@ -75,17 +91,26 @@ router.get(
     query("search").optional().isString(),
     query("department").optional().isString(),
     query("designation").optional().isString(),
-    query("gender").optional().isString()
+    query("gender").optional().isString(),
   ],
   validateRequest,
   async (req, res) => {
-    const { search = "", department = "", designation = "", gender = "" } = req.query;
+    const {
+      search = "",
+      department = "",
+      designation = "",
+      gender = "",
+    } = req.query;
 
     const filter = {};
 
     if (search) {
       const regex = new RegExp(search, "i");
-      filter.$or = [{ fullName: regex }, { email: regex }, { department: regex }];
+      filter.$or = [
+        { fullName: regex },
+        { email: regex },
+        { department: regex },
+      ];
     }
 
     if (department) filter.department = department;
@@ -99,10 +124,10 @@ router.get(
       meta: {
         departments: allowedDepartments,
         designations: allowedDesignations,
-        genders: ["Male", "Female", "Other"]
-      }
+        genders: ["Male", "Female", "Other"],
+      },
     });
-  }
+  },
 );
 
 router.post(
@@ -113,10 +138,18 @@ router.post(
     body("fullName").trim().notEmpty().withMessage("Full name is required"),
     dobValidation(),
     body("email").isEmail().withMessage("Valid email is required"),
-    body("phoneNumber").matches(/^\d{10}$/).withMessage("Phone number must be exactly 10 digits"),
-    body("department").isIn(allowedDepartments).withMessage("Department must be selected from dropdown"),
-    body("designation").isIn(allowedDesignations).withMessage("Designation must be selected from dropdown"),
-    body("gender").isIn(["Male", "Female", "Other"]).withMessage("Gender is required")
+    body("phoneNumber")
+      .matches(/^\d{10}$/)
+      .withMessage("Phone number must be exactly 10 digits"),
+    body("department")
+      .isIn(allowedDepartments)
+      .withMessage("Department must be selected from dropdown"),
+    body("designation")
+      .isIn(allowedDesignations)
+      .withMessage("Designation must be selected from dropdown"),
+    body("gender")
+      .isIn(["Male", "Female", "Other"])
+      .withMessage("Gender is required"),
   ],
   validateRequest,
   async (req, res) => {
@@ -139,11 +172,11 @@ router.post(
       designation: req.body.designation,
       gender: req.body.gender,
       photoPath: `/uploads/${req.file.filename}`,
-      createdBy: req.user.userId
+      createdBy: req.user.userId,
     });
 
     return res.status(201).json({ employee });
-  }
+  },
 );
 
 router.put(
@@ -155,10 +188,18 @@ router.put(
     body("fullName").trim().notEmpty().withMessage("Full name is required"),
     dobValidation(),
     body("email").isEmail().withMessage("Valid email is required"),
-    body("phoneNumber").matches(/^\d{10}$/).withMessage("Phone number must be exactly 10 digits"),
-    body("department").isIn(allowedDepartments).withMessage("Department must be selected from dropdown"),
-    body("designation").isIn(allowedDesignations).withMessage("Designation must be selected from dropdown"),
-    body("gender").isIn(["Male", "Female", "Other"]).withMessage("Gender is required")
+    body("phoneNumber")
+      .matches(/^\d{10}$/)
+      .withMessage("Phone number must be exactly 10 digits"),
+    body("department")
+      .isIn(allowedDepartments)
+      .withMessage("Department must be selected from dropdown"),
+    body("designation")
+      .isIn(allowedDesignations)
+      .withMessage("Designation must be selected from dropdown"),
+    body("gender")
+      .isIn(["Male", "Female", "Other"])
+      .withMessage("Gender is required"),
   ],
   validateRequest,
   async (req, res) => {
@@ -169,7 +210,10 @@ router.put(
     }
 
     const normalizedEmail = req.body.email.toLowerCase();
-    const duplicate = await Employee.findOne({ email: normalizedEmail, _id: { $ne: employee._id } });
+    const duplicate = await Employee.findOne({
+      email: normalizedEmail,
+      _id: { $ne: employee._id },
+    });
     if (duplicate) {
       return res.status(409).json({ message: "Employee email already exists" });
     }
@@ -189,7 +233,7 @@ router.put(
 
     await employee.save();
     return res.json({ employee });
-  }
+  },
 );
 
 router.delete(
@@ -209,7 +253,7 @@ router.delete(
     removeUploadedPhoto(employee.photoPath);
 
     return res.json({ message: "Employee deleted successfully" });
-  }
+  },
 );
 
 module.exports = router;

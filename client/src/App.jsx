@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
-import api, { clearAuthToken } from "./api";
-import { hasAuthToken } from "./api";
+import api, { clearAuthToken, hasAuthToken } from "./api";
 import LoginPage from "./components/LoginPage";
 import Dashboard from "./components/Dashboard";
 

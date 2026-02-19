@@ -1,7 +1,21 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 
-const DEFAULT_DEPARTMENTS = ["HR", "Engineering", "Finance", "Marketing", "Operations", "Admin"];
-const DEFAULT_DESIGNATIONS = ["Intern", "Executive", "Manager", "Senior Manager", "Lead", "Director"];
+const DEFAULT_DEPARTMENTS = [
+  "HR",
+  "Engineering",
+  "Finance",
+  "Marketing",
+  "Operations",
+  "Admin",
+];
+const DEFAULT_DESIGNATIONS = [
+  "Intern",
+  "Executive",
+  "Manager",
+  "Senior Manager",
+  "Lead",
+  "Director",
+];
 
 const toDateInputValue = (value) => {
   if (!value) return "";
@@ -44,7 +58,7 @@ const buildInitialForm = (initialValues) => ({
   phoneNumber: initialValues?.phoneNumber || "",
   designation: initialValues?.designation || "",
   gender: initialValues?.gender || "",
-  photo: null
+  photo: null,
 });
 
 function EmployeeModal({
@@ -54,7 +68,7 @@ function EmployeeModal({
   departments = [],
   designations = [],
   mode = "create",
-  initialValues = null
+  initialValues = null,
 }) {
   const isEditMode = mode === "edit";
   const [form, setForm] = useState(buildInitialForm(initialValues));
@@ -64,8 +78,12 @@ function EmployeeModal({
   const fileInputRef = useRef(null);
   const maxDob = useMemo(() => getMaxDob(), []);
 
-  const departmentOptions = departments.length ? departments : DEFAULT_DEPARTMENTS;
-  const designationOptions = designations.length ? designations : DEFAULT_DESIGNATIONS;
+  const departmentOptions = departments.length
+    ? departments
+    : DEFAULT_DEPARTMENTS;
+  const designationOptions = designations.length
+    ? designations
+    : DEFAULT_DESIGNATIONS;
 
   useEffect(() => {
     setForm(buildInitialForm(initialValues));
@@ -76,12 +94,17 @@ function EmployeeModal({
   const firstValidationError = useMemo(() => {
     if (!form.fullName.trim()) return "Full Name is required";
     if (!form.dob) return "Date of Birth is required";
-    if (!isDateBeforeToday(form.dob)) return "Date of birth must be before today";
+    if (!isDateBeforeToday(form.dob))
+      return "Date of birth must be before today";
     if (!/^\S+@\S+\.\S+$/.test(form.email)) return "Valid email is required";
-    if (!/^\d{10}$/.test(form.phoneNumber)) return "Phone number must be exactly 10 digits";
-    if (!departmentOptions.includes(form.department)) return "Department must be selected from dropdown";
-    if (!designationOptions.includes(form.designation)) return "Designation must be selected from dropdown";
-    if (!["Male", "Female", "Other"].includes(form.gender)) return "Gender is required";
+    if (!/^\d{10}$/.test(form.phoneNumber))
+      return "Phone number must be exactly 10 digits";
+    if (!departmentOptions.includes(form.department))
+      return "Department must be selected from dropdown";
+    if (!designationOptions.includes(form.designation))
+      return "Designation must be selected from dropdown";
+    if (!["Male", "Female", "Other"].includes(form.gender))
+      return "Gender is required";
     if (!isEditMode && !form.photo) return "Employee photo is required";
     return "";
   }, [form, departmentOptions, designationOptions, isEditMode]);
@@ -116,7 +139,7 @@ function EmployeeModal({
       setError(
         requestError.response?.data?.message ||
           requestError.response?.data?.errors?.[0]?.msg ||
-          `Failed to ${isEditMode ? "update" : "create"} employee`
+          `Failed to ${isEditMode ? "update" : "create"} employee`,
       );
       setIsSubmitting(false);
     }
@@ -145,7 +168,10 @@ function EmployeeModal({
             &times;
           </button>
         </div>
-        <div className="ds-modal-divider ds-modal-divider-top" aria-hidden="true" />
+        <div
+          className="ds-modal-divider ds-modal-divider-top"
+          aria-hidden="true"
+        />
 
         <div className="ds-modal-body">
           <label className="ds-field">
@@ -156,7 +182,9 @@ function EmployeeModal({
               type="text"
               placeholder="Enter name"
               value={form.fullName}
-              onChange={(event) => setForm((prev) => ({ ...prev, fullName: event.target.value }))}
+              onChange={(event) =>
+                setForm((prev) => ({ ...prev, fullName: event.target.value }))
+              }
             />
           </label>
 
@@ -168,7 +196,9 @@ function EmployeeModal({
               type="email"
               placeholder="Enter Email"
               value={form.email}
-              onChange={(event) => setForm((prev) => ({ ...prev, email: event.target.value }))}
+              onChange={(event) =>
+                setForm((prev) => ({ ...prev, email: event.target.value }))
+              }
             />
           </label>
 
@@ -181,7 +211,12 @@ function EmployeeModal({
               placeholder="Enter contact"
               maxLength={10}
               value={form.phoneNumber}
-              onChange={(event) => setForm((prev) => ({ ...prev, phoneNumber: event.target.value.replace(/\D/g, "") }))}
+              onChange={(event) =>
+                setForm((prev) => ({
+                  ...prev,
+                  phoneNumber: event.target.value.replace(/\D/g, ""),
+                }))
+              }
             />
           </label>
 
@@ -189,7 +224,12 @@ function EmployeeModal({
             <span>
               Gender <em className="ds-required">*</em>
             </span>
-            <select value={form.gender} onChange={(event) => setForm((prev) => ({ ...prev, gender: event.target.value }))}>
+            <select
+              value={form.gender}
+              onChange={(event) =>
+                setForm((prev) => ({ ...prev, gender: event.target.value }))
+              }
+            >
               <option value="">Select</option>
               <option value="Male">Male</option>
               <option value="Female">Female</option>
@@ -215,7 +255,9 @@ function EmployeeModal({
                 type="date"
                 max={maxDob}
                 value={form.dob}
-                onChange={(event) => setForm((prev) => ({ ...prev, dob: event.target.value }))}
+                onChange={(event) =>
+                  setForm((prev) => ({ ...prev, dob: event.target.value }))
+                }
                 tabIndex={-1}
                 aria-hidden="true"
               />
@@ -228,7 +270,11 @@ function EmployeeModal({
                 }}
                 aria-label="Open date picker"
               >
-                <img src="/sde-kit/Assets/date-icon.svg" alt="" aria-hidden="true" />
+                <img
+                  src="/sde-kit/Assets/date-icon.svg"
+                  alt=""
+                  aria-hidden="true"
+                />
               </button>
             </div>
           </label>
@@ -239,7 +285,9 @@ function EmployeeModal({
             </span>
             <select
               value={form.department}
-              onChange={(event) => setForm((prev) => ({ ...prev, department: event.target.value }))}
+              onChange={(event) =>
+                setForm((prev) => ({ ...prev, department: event.target.value }))
+              }
             >
               <option value="">Select</option>
               {departmentOptions.map((item) => (
@@ -256,7 +304,12 @@ function EmployeeModal({
             </span>
             <select
               value={form.designation}
-              onChange={(event) => setForm((prev) => ({ ...prev, designation: event.target.value }))}
+              onChange={(event) =>
+                setForm((prev) => ({
+                  ...prev,
+                  designation: event.target.value,
+                }))
+              }
             >
               <option value="">Select</option>
               {designationOptions.map((item) => (
@@ -269,7 +322,8 @@ function EmployeeModal({
 
           <label className="ds-field">
             <span>
-              Employee Photo {isEditMode ? "" : <em className="ds-required">*</em>}
+              Employee Photo{" "}
+              {isEditMode ? "" : <em className="ds-required">*</em>}
             </span>
             <div
               className="ds-file-picker"
@@ -283,7 +337,9 @@ function EmployeeModal({
                 }
               }}
             >
-              <span className={`ds-file-picker-text${form.photo ? " has-file" : ""}`}>
+              <span
+                className={`ds-file-picker-text${form.photo ? " has-file" : ""}`}
+              >
                 {form.photo ? form.photo.name : "Upload Photo"}
               </span>
             </div>
@@ -292,13 +348,21 @@ function EmployeeModal({
               className="ds-file-input-hidden"
               type="file"
               accept="image/*"
-              onChange={(event) => setForm((prev) => ({ ...prev, photo: event.target.files?.[0] || null }))}
+              onChange={(event) =>
+                setForm((prev) => ({
+                  ...prev,
+                  photo: event.target.files?.[0] || null,
+                }))
+              }
             />
           </label>
         </div>
 
         {error ? <p className="ds-modal-error">{error}</p> : null}
-        <div className="ds-modal-divider ds-modal-divider-bottom" aria-hidden="true" />
+        <div
+          className="ds-modal-divider ds-modal-divider-bottom"
+          aria-hidden="true"
+        />
 
         <div className="ds-modal-foot">
           <button type="submit" disabled={isSubmitting}>

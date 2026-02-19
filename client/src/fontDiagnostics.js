@@ -69,7 +69,9 @@ export async function runInterFontDiagnostics() {
   }
 
   if (!allRequestsOk) {
-    console.error("[FontCheck] Inter family resolved, but one or more font files failed to fetch.");
+    console.error(
+      "[FontCheck] Inter family resolved, but one or more font files failed to fetch.",
+    );
     return;
   }
 

@@ -19,27 +19,53 @@ const NAV_ITEMS = [
   ["performance.svg", "Performance"],
   ["policies.svg", "HR Policies"],
   ["reports.svg", "Reports"],
-  ["support.svg", "Support"]
+  ["support.svg", "Support"],
 ];
 
 const DEFAULT_FILTERS = {
   search: "",
   department: "",
   designation: "",
-  gender: ""
+  gender: "",
 };
 const ROWS_PER_PAGE = 11;
 const TABLE_HEADER_ROW_HEIGHT = 31.81;
 const TABLE_BODY_ROW_HEIGHT = 31.81;
 
-const DEFAULT_DEPARTMENTS = ["HR", "Engineering", "Finance", "Marketing", "Operations", "Admin"];
-const DEFAULT_DESIGNATIONS = ["Intern", "Executive", "Manager", "Senior Manager", "Lead", "Director"];
+const DEFAULT_DEPARTMENTS = [
+  "HR",
+  "Engineering",
+  "Finance",
+  "Marketing",
+  "Operations",
+  "Admin",
+];
+const DEFAULT_DESIGNATIONS = [
+  "Intern",
+  "Executive",
+  "Manager",
+  "Senior Manager",
+  "Lead",
+  "Director",
+];
 
 function IdmsBrandLogo() {
   return (
-    <svg viewBox="600 131 165 44" xmlns="http://www.w3.org/2000/svg" className="ds-idms-logo" aria-label="IDMS logo">
+    <svg
+      viewBox="600 131 165 44"
+      xmlns="http://www.w3.org/2000/svg"
+      className="ds-idms-logo"
+      aria-label="IDMS logo"
+    >
       <defs>
-        <linearGradient id="ds-grad-i" x1="606.75" y1="133.49" x2="606.75" y2="172.50" gradientUnits="userSpaceOnUse">
+        <linearGradient
+          id="ds-grad-i"
+          x1="606.75"
+          y1="133.49"
+          x2="606.75"
+          y2="172.50"
+          gradientUnits="userSpaceOnUse"
+        >
           <stop offset="0" stopColor="#FF00AA" />
           <stop offset="0.1413" stopColor="#FC00AC" />
           <stop offset="0.3068" stopColor="#F400B2" />
@@ -48,7 +74,14 @@ function IdmsBrandLogo() {
           <stop offset="0.8648" stopColor="#B700E3" />
           <stop offset="1" stopColor="#9600FF" />
         </linearGradient>
-        <linearGradient id="ds-grad-d" x1="639.27" y1="133.49" x2="639.27" y2="172.50" gradientUnits="userSpaceOnUse">
+        <linearGradient
+          id="ds-grad-d"
+          x1="639.27"
+          y1="133.49"
+          x2="639.27"
+          y2="172.50"
+          gradientUnits="userSpaceOnUse"
+        >
           <stop offset="0" stopColor="#FF00AA" />
           <stop offset="0.1413" stopColor="#FC00AC" />
           <stop offset="0.3068" stopColor="#F400B2" />
@@ -57,7 +90,14 @@ function IdmsBrandLogo() {
           <stop offset="0.8648" stopColor="#B700E3" />
           <stop offset="1" stopColor="#9600FF" />
         </linearGradient>
-        <linearGradient id="ds-grad-m" x1="692.46" y1="133.49" x2="692.46" y2="172.50" gradientUnits="userSpaceOnUse">
+        <linearGradient
+          id="ds-grad-m"
+          x1="692.46"
+          y1="133.49"
+          x2="692.46"
+          y2="172.50"
+          gradientUnits="userSpaceOnUse"
+        >
           <stop offset="0" stopColor="#FF00AA" />
           <stop offset="0.1413" stopColor="#FC00AC" />
           <stop offset="0.3068" stopColor="#F400B2" />
@@ -66,7 +106,14 @@ function IdmsBrandLogo() {
           <stop offset="0.8648" stopColor="#B700E3" />
           <stop offset="1" stopColor="#9600FF" />
         </linearGradient>
-        <linearGradient id="ds-grad-s" x1="744.77" y1="133.49" x2="744.77" y2="172.50" gradientUnits="userSpaceOnUse">
+        <linearGradient
+          id="ds-grad-s"
+          x1="744.77"
+          y1="133.49"
+          x2="744.77"
+          y2="172.50"
+          gradientUnits="userSpaceOnUse"
+        >
           <stop offset="0" stopColor="#FF00AA" />
           <stop offset="0.1413" stopColor="#FC00AC" />
           <stop offset="0.3068" stopColor="#F400B2" />
@@ -76,7 +123,10 @@ function IdmsBrandLogo() {
           <stop offset="1" stopColor="#9600FF" />
         </linearGradient>
       </defs>
-      <path fill="url(#ds-grad-i)" d="M602.61,133.49h8.28v39.01h-8.28v-39.01Z" />
+      <path
+        fill="url(#ds-grad-i)"
+        d="M602.61,133.49h8.28v39.01h-8.28v-39.01Z"
+      />
       <path
         fill="url(#ds-grad-d)"
         d="M619.76,133.49h20.1c12.59,0,18.92,5.02,18.92,15.13v8.75c0,10.11-6.33,15.13-18.92,15.13h-20.1v-39.01ZM638.67,167.48c7.86,0,11.82-3.13,11.82-9.46v-10.05c0-6.32-3.96-9.46-11.82-9.46h-10.64v28.96h10.64Z"
@@ -96,9 +146,29 @@ function IdmsBrandLogo() {
 function UserAvatarOutline() {
   return (
     <svg viewBox="0 0 32 32" className="ds-avatar-outline" aria-hidden="true">
-      <circle cx="16" cy="16" r="15" fill="none" stroke="#4678BE" strokeWidth="1.5" />
-      <circle cx="16" cy="11" r="4" fill="none" stroke="#4678BE" strokeWidth="1.5" />
-      <path d="M8.8 23.5c1.6-3.7 4.2-5.5 7.2-5.5s5.6 1.8 7.2 5.5" fill="none" stroke="#4678BE" strokeWidth="1.5" strokeLinecap="round" />
+      <circle
+        cx="16"
+        cy="16"
+        r="15"
+        fill="none"
+        stroke="#4678BE"
+        strokeWidth="1.5"
+      />
+      <circle
+        cx="16"
+        cy="11"
+        r="4"
+        fill="none"
+        stroke="#4678BE"
+        strokeWidth="1.5"
+      />
+      <path
+        d="M8.8 23.5c1.6-3.7 4.2-5.5 7.2-5.5s5.6 1.8 7.2 5.5"
+        fill="none"
+        stroke="#4678BE"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+      />
     </svg>
   );
 }
@@ -129,8 +199,10 @@ const employeeMatchesFilters = (employee, activeFilters) => {
     if (!matchesSearch) return false;
   }
 
-  if (department && normalizeText(employee.department) !== department) return false;
-  if (designation && normalizeText(employee.designation) !== designation) return false;
+  if (department && normalizeText(employee.department) !== department)
+    return false;
+  if (designation && normalizeText(employee.designation) !== designation)
+    return false;
   if (gender && normalizeText(employee.gender) !== gender) return false;
 
   return true;
@@ -140,7 +212,11 @@ function Dashboard({ user, onLogout }) {
   const [scale, setScale] = useState(1);
   const [filters, setFilters] = useState(DEFAULT_FILTERS);
   const [employees, setEmployees] = useState([]);
-  const [meta, setMeta] = useState({ departments: [], designations: [], genders: ["Male", "Female", "Other"] });
+  const [meta, setMeta] = useState({
+    departments: [],
+    designations: [],
+    genders: ["Male", "Female", "Other"],
+  });
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalMode, setModalMode] = useState("create");
   const [editingEmployee, setEditingEmployee] = useState(null);
@@ -160,7 +236,10 @@ function Dashboard({ user, onLogout }) {
 
   useEffect(() => {
     const applyScale = () => {
-      const nextScale = Math.min(window.innerWidth / STAGE_WIDTH, window.innerHeight / STAGE_HEIGHT);
+      const nextScale = Math.min(
+        window.innerWidth / STAGE_WIDTH,
+        window.innerHeight / STAGE_HEIGHT,
+      );
       setScale(nextScale);
     };
 
@@ -187,17 +266,26 @@ function Dashboard({ user, onLogout }) {
     setError("");
 
     try {
-      const params = Object.fromEntries(Object.entries(activeFilters).filter(([, value]) => value));
-      const response = await api.get("/employees", { params, signal: controller.signal });
+      const params = Object.fromEntries(
+        Object.entries(activeFilters).filter(([, value]) => value),
+      );
+      const response = await api.get("/employees", {
+        params,
+        signal: controller.signal,
+      });
       if (fetchRequestIdRef.current !== requestId) return;
-      setEmployees(Array.isArray(response.data.employees) ? response.data.employees : []);
+      setEmployees(
+        Array.isArray(response.data.employees) ? response.data.employees : [],
+      );
       if (response.data.meta) {
         setMeta(response.data.meta);
       }
     } catch (requestError) {
       if (requestError?.code === "ERR_CANCELED") return;
       if (fetchRequestIdRef.current !== requestId) return;
-      setError(requestError.response?.data?.message || "Failed to load employees");
+      setError(
+        requestError.response?.data?.message || "Failed to load employees",
+      );
     } finally {
       if (fetchRequestIdRef.current !== requestId) return;
       if (initial) {
@@ -281,13 +369,22 @@ function Dashboard({ user, onLogout }) {
     };
   }, [activeActionMenuId]);
 
-  const departmentOptions = meta.departments.length ? meta.departments : DEFAULT_DEPARTMENTS;
-  const designationOptions = meta.designations.length ? meta.designations : DEFAULT_DESIGNATIONS;
+  const departmentOptions = meta.departments.length
+    ? meta.departments
+    : DEFAULT_DEPARTMENTS;
+  const designationOptions = meta.designations.length
+    ? meta.designations
+    : DEFAULT_DESIGNATIONS;
   const totalPages = Math.max(1, Math.ceil(employees.length / ROWS_PER_PAGE));
   const pageStart = (currentPage - 1) * ROWS_PER_PAGE;
-  const paginatedEmployees = employees.slice(pageStart, pageStart + ROWS_PER_PAGE);
+  const paginatedEmployees = employees.slice(
+    pageStart,
+    pageStart + ROWS_PER_PAGE,
+  );
   const tableWrapHeight =
-    TABLE_HEADER_ROW_HEIGHT + Math.max(paginatedEmployees.length, 1) * TABLE_BODY_ROW_HEIGHT + 1;
+    TABLE_HEADER_ROW_HEIGHT +
+    Math.max(paginatedEmployees.length, 1) * TABLE_BODY_ROW_HEIGHT +
+    1;
 
   useEffect(() => {
     setCurrentPage((prev) => Math.min(prev, totalPages));
@@ -313,7 +410,10 @@ function Dashboard({ user, onLogout }) {
     }
 
     setError("");
-    const apiBaseUrl = (import.meta.env.VITE_API_BASE_URL || "").replace(/\/+$/, "");
+    const apiBaseUrl = (import.meta.env.VITE_API_BASE_URL || "").replace(
+      /\/+$/,
+      "",
+    );
     const uploadBaseUrl =
       import.meta.env.VITE_UPLOADS_BASE_URL ||
       (apiBaseUrl ? apiBaseUrl.replace(/\/api$/, "") : window.location.origin);
@@ -367,7 +467,9 @@ function Dashboard({ user, onLogout }) {
       await api.delete(`/employees/${employee._id}`);
     } catch (requestError) {
       setEmployees(previousEmployees);
-      setError(requestError.response?.data?.message || "Failed to delete employee");
+      setError(
+        requestError.response?.data?.message || "Failed to delete employee",
+      );
     } finally {
       setDeletingEmployeeId("");
     }
@@ -378,7 +480,7 @@ function Dashboard({ user, onLogout }) {
     setIsMutating(true);
     try {
       const response = await api.post("/employees", payload, {
-        headers: { "Content-Type": "multipart/form-data" }
+        headers: { "Content-Type": "multipart/form-data" },
       });
       const createdEmployee = response.data?.employee;
       if (createdEmployee && employeeMatchesFilters(createdEmployee, filters)) {
@@ -398,9 +500,13 @@ function Dashboard({ user, onLogout }) {
     setError("");
     setIsMutating(true);
     try {
-      const response = await api.put(`/employees/${editingEmployee._id}`, payload, {
-        headers: { "Content-Type": "multipart/form-data" }
-      });
+      const response = await api.put(
+        `/employees/${editingEmployee._id}`,
+        payload,
+        {
+          headers: { "Content-Type": "multipart/form-data" },
+        },
+      );
       const updatedEmployee = response.data?.employee;
 
       if (updatedEmployee) {
@@ -416,7 +522,9 @@ function Dashboard({ user, onLogout }) {
             return [updatedEmployee, ...prev];
           }
 
-          return prev.map((item) => (item._id === updatedEmployee._id ? updatedEmployee : item));
+          return prev.map((item) =>
+            item._id === updatedEmployee._id ? updatedEmployee : item,
+          );
         });
       }
 
@@ -430,12 +538,17 @@ function Dashboard({ user, onLogout }) {
 
   const shellStyle = useMemo(
     () => ({ width: STAGE_WIDTH * scale, height: STAGE_HEIGHT * scale }),
-    [scale]
+    [scale],
   );
 
   const stageStyle = useMemo(
-    () => ({ transform: `scale(${scale})`, transformOrigin: "top left", width: STAGE_WIDTH, height: STAGE_HEIGHT }),
-    [scale]
+    () => ({
+      transform: `scale(${scale})`,
+      transformOrigin: "top left",
+      width: STAGE_WIDTH,
+      height: STAGE_HEIGHT,
+    }),
+    [scale],
   );
 
   return (
@@ -472,9 +585,17 @@ function Dashboard({ user, onLogout }) {
 
           <aside className="ds-sidebar">
             {NAV_ITEMS.map(([icon, label], index) => (
-              <button key={icon} type="button" className={`ds-nav-row${index === 0 ? " active" : ""}`}>
+              <button
+                key={icon}
+                type="button"
+                className={`ds-nav-row${index === 0 ? " active" : ""}`}
+              >
                 <span className="ds-nav-icon">
-                  <img src={`/sde-kit/Assets/${icon}`} alt="" aria-hidden="true" />
+                  <img
+                    src={`/sde-kit/Assets/${icon}`}
+                    alt=""
+                    aria-hidden="true"
+                  />
                 </span>
                 <span>{label}</span>
               </button>
@@ -490,7 +611,12 @@ function Dashboard({ user, onLogout }) {
                   placeholder="Search..."
                   disabled={isMutating}
                   value={filters.search}
-                  onChange={(event) => setFilters((prev) => ({ ...prev, search: event.target.value }))}
+                  onChange={(event) =>
+                    setFilters((prev) => ({
+                      ...prev,
+                      search: event.target.value,
+                    }))
+                  }
                 />
               </div>
 
@@ -499,7 +625,12 @@ function Dashboard({ user, onLogout }) {
                   className="ds-filter"
                   disabled={isMutating}
                   value={filters.department}
-                  onChange={(event) => setFilters((prev) => ({ ...prev, department: event.target.value }))}
+                  onChange={(event) =>
+                    setFilters((prev) => ({
+                      ...prev,
+                      department: event.target.value,
+                    }))
+                  }
                 >
                   <option value="">All Departments</option>
                   {departmentOptions.map((item) => (
@@ -513,7 +644,12 @@ function Dashboard({ user, onLogout }) {
                   className="ds-filter"
                   disabled={isMutating}
                   value={filters.designation}
-                  onChange={(event) => setFilters((prev) => ({ ...prev, designation: event.target.value }))}
+                  onChange={(event) =>
+                    setFilters((prev) => ({
+                      ...prev,
+                      designation: event.target.value,
+                    }))
+                  }
                 >
                   <option value="">All Designations</option>
                   {designationOptions.map((item) => (
@@ -527,7 +663,12 @@ function Dashboard({ user, onLogout }) {
                   className="ds-filter"
                   disabled={isMutating}
                   value={filters.gender}
-                  onChange={(event) => setFilters((prev) => ({ ...prev, gender: event.target.value }))}
+                  onChange={(event) =>
+                    setFilters((prev) => ({
+                      ...prev,
+                      gender: event.target.value,
+                    }))
+                  }
                 >
                   <option value="">All Genders</option>
                   <option value="Male">Male</option>
@@ -535,8 +676,17 @@ function Dashboard({ user, onLogout }) {
                   <option value="Other">Other</option>
                 </select>
 
-                <button type="button" className="ds-create-btn" disabled={isMutating} onClick={openCreateModal}>
-                  <svg className="ds-create-plus" viewBox="0 0 10 10" aria-hidden="true">
+                <button
+                  type="button"
+                  className="ds-create-btn"
+                  disabled={isMutating}
+                  onClick={openCreateModal}
+                >
+                  <svg
+                    className="ds-create-plus"
+                    viewBox="0 0 10 10"
+                    aria-hidden="true"
+                  >
                     <line x1="5" y1="1" x2="5" y2="9" />
                     <line x1="1" y1="5" x2="9" y2="5" />
                   </svg>
@@ -547,7 +697,11 @@ function Dashboard({ user, onLogout }) {
 
             <section
               className={`ds-table-wrap ${employees.length ? "has-data" : "is-empty"}`}
-              style={employees.length ? { height: `${tableWrapHeight}px` } : undefined}
+              style={
+                employees.length
+                  ? { height: `${tableWrapHeight}px` }
+                  : undefined
+              }
             >
               {isInitialLoading && !employees.length ? (
                 <div className="ds-empty-state">Loading employees...</div>
@@ -588,8 +742,16 @@ function Dashboard({ user, onLogout }) {
                         <td>{employee.department}</td>
                         <td>{employee.designation}</td>
                         <td>
-                          <button type="button" className="ds-photo-btn" onClick={() => openPhoto(employee)}>
-                            <img src="/sde-kit/Assets/photo.svg" alt="Employee photo" className="ds-photo-link ds-photo-fallback" />
+                          <button
+                            type="button"
+                            className="ds-photo-btn"
+                            onClick={() => openPhoto(employee)}
+                          >
+                            <img
+                              src="/sde-kit/Assets/photo.svg"
+                              alt="Employee photo"
+                              className="ds-photo-link ds-photo-fallback"
+                            />
                           </button>
                         </td>
                         <td>
@@ -599,10 +761,16 @@ function Dashboard({ user, onLogout }) {
                               className="ds-action-btn"
                               disabled={deletingEmployeeId === employee._id}
                               onClick={() =>
-                                setActiveActionMenuId((prev) => (prev === employee._id ? null : employee._id))
+                                setActiveActionMenuId((prev) =>
+                                  prev === employee._id ? null : employee._id,
+                                )
                               }
                             >
-                              <img src="/sde-kit/Assets/action.svg" alt="Action" className="ds-action-icon" />
+                              <img
+                                src="/sde-kit/Assets/action.svg"
+                                alt="Action"
+                                className="ds-action-icon"
+                              />
                             </button>
                             {activeActionMenuId === employee._id ? (
                               <div className="ds-action-menu">
@@ -616,9 +784,13 @@ function Dashboard({ user, onLogout }) {
                                 <button
                                   type="button"
                                   disabled={deletingEmployeeId === employee._id}
-                                  onClick={() => requestDeleteEmployee(employee)}
+                                  onClick={() =>
+                                    requestDeleteEmployee(employee)
+                                  }
                                 >
-                                  {deletingEmployeeId === employee._id ? "Deleting..." : "Delete"}
+                                  {deletingEmployeeId === employee._id
+                                    ? "Deleting..."
+                                    : "Delete"}
                                 </button>
                               </div>
                             ) : null}
@@ -634,14 +806,20 @@ function Dashboard({ user, onLogout }) {
                   <p>No Records to be displayed</p>
                 </div>
               )}
-              {isRefreshing ? <div className="ds-table-loading-overlay">Refreshing data...</div> : null}
+              {isRefreshing ? (
+                <div className="ds-table-loading-overlay">
+                  Refreshing data...
+                </div>
+              ) : null}
             </section>
 
             {error ? <div className="ds-error">{error}</div> : null}
           </main>
 
           <footer className="ds-footer">
-            <div className="ds-total">Total Records -&gt; {employees.length}</div>
+            <div className="ds-total">
+              Total Records -&gt; {employees.length}
+            </div>
             <div className="ds-pagination">
               <button
                 type="button"
@@ -652,7 +830,7 @@ function Dashboard({ user, onLogout }) {
                   setCurrentPage((prev) => Math.max(1, prev - 1));
                 }}
               >
-                &lt;- 
+                &lt;-
               </button>
               <span>Page</span>
               <span className="ds-page-no">{currentPage}</span>
@@ -683,17 +861,33 @@ function Dashboard({ user, onLogout }) {
           ) : null}
 
           {deleteTarget ? (
-            <div className="ds-confirm-overlay" role="dialog" aria-modal="true" aria-label="Delete confirmation">
+            <div
+              className="ds-confirm-overlay"
+              role="dialog"
+              aria-modal="true"
+              aria-label="Delete confirmation"
+            >
               <div className="ds-confirm-panel">
                 <h3>Delete Employee</h3>
                 <p>
-                  Are you sure you want to delete <strong>{deleteTarget.fullName}</strong>?
+                  Are you sure you want to delete{" "}
+                  <strong>{deleteTarget.fullName}</strong>?
                 </p>
                 <div className="ds-confirm-actions">
-                  <button type="button" className="ds-confirm-cancel" onClick={cancelDeleteEmployee} disabled={Boolean(deletingEmployeeId)}>
+                  <button
+                    type="button"
+                    className="ds-confirm-cancel"
+                    onClick={cancelDeleteEmployee}
+                    disabled={Boolean(deletingEmployeeId)}
+                  >
                     Cancel
                   </button>
-                  <button type="button" className="ds-confirm-delete" onClick={confirmDeleteEmployee} disabled={Boolean(deletingEmployeeId)}>
+                  <button
+                    type="button"
+                    className="ds-confirm-delete"
+                    onClick={confirmDeleteEmployee}
+                    disabled={Boolean(deletingEmployeeId)}
+                  >
                     {deletingEmployeeId ? "Deleting..." : "Delete"}
                   </button>
                 </div>

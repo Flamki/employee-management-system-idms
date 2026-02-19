@@ -12,15 +12,18 @@ const router = express.Router();
 router.post(
   "/login",
   [
-    body("identity").trim().notEmpty().withMessage("Email or username is required"),
-    body("password").trim().notEmpty().withMessage("Password is required")
+    body("identity")
+      .trim()
+      .notEmpty()
+      .withMessage("Email or username is required"),
+    body("password").trim().notEmpty().withMessage("Password is required"),
   ],
   validateRequest,
   async (req, res) => {
     const { identity, password } = req.body;
 
     const user = await User.findOne({
-      $or: [{ username: identity }, { email: identity.toLowerCase() }]
+      $or: [{ username: identity }, { email: identity.toLowerCase() }],
     });
 
     if (!user) {
@@ -37,9 +40,9 @@ router.post(
 
     return res.json({
       token,
-      user: { id: user._id, username: user.username, email: user.email }
+      user: { id: user._id, username: user.username, email: user.email },
     });
-  }
+  },
 );
 
 router.post("/logout", (req, res) => {
@@ -48,13 +51,15 @@ router.post("/logout", (req, res) => {
   res.clearCookie(name, {
     httpOnly: true,
     sameSite: isProduction ? "none" : "lax",
-    secure: isProduction
+    secure: isProduction,
   });
   return res.json({ message: "Logged out" });
 });
 
 router.get("/me", authMiddleware, async (req, res) => {
-  const user = await User.findById(req.user.userId).select("_id username email");
+  const user = await User.findById(req.user.userId).select(
+    "_id username email",
+  );
   if (!user) {
     return res.status(404).json({ message: "User not found" });
   }

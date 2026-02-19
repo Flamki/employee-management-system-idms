@@ -4,7 +4,9 @@ const TOKEN_STORAGE_KEY = "ems_token";
 const SESSION_TOKEN_STORAGE_KEY = "ems_session_token";
 
 const readToken = () =>
-  localStorage.getItem(TOKEN_STORAGE_KEY) || sessionStorage.getItem(SESSION_TOKEN_STORAGE_KEY) || "";
+  localStorage.getItem(TOKEN_STORAGE_KEY) ||
+  sessionStorage.getItem(SESSION_TOKEN_STORAGE_KEY) ||
+  "";
 
 export const hasAuthToken = () => Boolean(readToken());
 
@@ -34,7 +36,7 @@ const baseURL = normalizedApiBaseUrl
 
 const api = axios.create({
   baseURL,
-  withCredentials: true
+  withCredentials: true,
 });
 
 api.interceptors.request.use((config) => {

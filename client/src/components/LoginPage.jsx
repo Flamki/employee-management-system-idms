@@ -1,13 +1,22 @@
 import { useState } from "react";
-import api from "../api";
-import { setAuthToken } from "../api";
+import api, { setAuthToken } from "../api";
 
 function IdmsLogo() {
   return (
-    <svg viewBox="600 131 165 44" xmlns="http://www.w3.org/2000/svg"
-      style={{ width: "100%", height: "auto", display: "block" }}>
+    <svg
+      viewBox="600 131 165 44"
+      xmlns="http://www.w3.org/2000/svg"
+      style={{ width: "100%", height: "auto", display: "block" }}
+    >
       <defs>
-        <linearGradient id="idms-grad-i" x1="606.75" y1="133.49" x2="606.75" y2="172.50" gradientUnits="userSpaceOnUse">
+        <linearGradient
+          id="idms-grad-i"
+          x1="606.75"
+          y1="133.49"
+          x2="606.75"
+          y2="172.50"
+          gradientUnits="userSpaceOnUse"
+        >
           <stop offset="0" stopColor="#FF00AA" />
           <stop offset="0.1413" stopColor="#FC00AC" />
           <stop offset="0.3068" stopColor="#F400B2" />
@@ -16,7 +25,14 @@ function IdmsLogo() {
           <stop offset="0.8648" stopColor="#B700E3" />
           <stop offset="1" stopColor="#9600FF" />
         </linearGradient>
-        <linearGradient id="idms-grad-d" x1="639.27" y1="133.49" x2="639.27" y2="172.50" gradientUnits="userSpaceOnUse">
+        <linearGradient
+          id="idms-grad-d"
+          x1="639.27"
+          y1="133.49"
+          x2="639.27"
+          y2="172.50"
+          gradientUnits="userSpaceOnUse"
+        >
           <stop offset="0" stopColor="#FF00AA" />
           <stop offset="0.1413" stopColor="#FC00AC" />
           <stop offset="0.3068" stopColor="#F400B2" />
@@ -25,7 +41,14 @@ function IdmsLogo() {
           <stop offset="0.8648" stopColor="#B700E3" />
           <stop offset="1" stopColor="#9600FF" />
         </linearGradient>
-        <linearGradient id="idms-grad-m" x1="692.46" y1="133.49" x2="692.46" y2="172.50" gradientUnits="userSpaceOnUse">
+        <linearGradient
+          id="idms-grad-m"
+          x1="692.46"
+          y1="133.49"
+          x2="692.46"
+          y2="172.50"
+          gradientUnits="userSpaceOnUse"
+        >
           <stop offset="0" stopColor="#FF00AA" />
           <stop offset="0.1413" stopColor="#FC00AC" />
           <stop offset="0.3068" stopColor="#F400B2" />
@@ -34,7 +57,14 @@ function IdmsLogo() {
           <stop offset="0.8648" stopColor="#B700E3" />
           <stop offset="1" stopColor="#9600FF" />
         </linearGradient>
-        <linearGradient id="idms-grad-s" x1="744.77" y1="133.49" x2="744.77" y2="172.50" gradientUnits="userSpaceOnUse">
+        <linearGradient
+          id="idms-grad-s"
+          x1="744.77"
+          y1="133.49"
+          x2="744.77"
+          y2="172.50"
+          gradientUnits="userSpaceOnUse"
+        >
           <stop offset="0" stopColor="#FF00AA" />
           <stop offset="0.1413" stopColor="#FC00AC" />
           <stop offset="0.3068" stopColor="#F400B2" />
@@ -44,20 +74,32 @@ function IdmsLogo() {
           <stop offset="1" stopColor="#9600FF" />
         </linearGradient>
       </defs>
-      <path fill="url(#idms-grad-i)" d="M602.61,133.49h8.28v39.01h-8.28v-39.01Z" />
-      <path fill="url(#idms-grad-d)" d="M619.76,133.49h20.1c12.59,0,18.92,5.02,18.92,15.13v8.75c0,10.11-6.33,15.13-18.92,15.13h-20.1v-39.01ZM638.67,167.48c7.86,0,11.82-3.13,11.82-9.46v-10.05c0-6.32-3.96-9.46-11.82-9.46h-10.64v28.96h10.64Z" />
-      <path fill="url(#idms-grad-m)" d="M667.04,133.49h10.64l14.78,30.97,14.78-30.97h10.64v39.01h-8.28v-27.25l-13,27.25h-8.28l-13-27.25v27.25h-8.28v-39.01Z" />
-      <path fill="url(#idms-grad-s)" d="M726.15,167.48h26.6c1.6,0,2.36-.65,2.36-1.89v-9.52c0-1.24-.77-1.89-2.36-1.89h-17.73c-5.91,0-8.87-2.36-8.87-7.09v-6.5c0-4.73,2.96-7.09,8.87-7.09h25.42v5.02h-23.64c-1.6,0-2.36.65-2.36,1.89v6.86c0,1.24.77,1.89,2.36,1.89h17.73c5.91,0,8.87,2.36,8.87,7.09v9.16c0,4.73-2.96,7.09-8.87,7.09h-28.37v-5.02Z" />
+      <path
+        fill="url(#idms-grad-i)"
+        d="M602.61,133.49h8.28v39.01h-8.28v-39.01Z"
+      />
+      <path
+        fill="url(#idms-grad-d)"
+        d="M619.76,133.49h20.1c12.59,0,18.92,5.02,18.92,15.13v8.75c0,10.11-6.33,15.13-18.92,15.13h-20.1v-39.01ZM638.67,167.48c7.86,0,11.82-3.13,11.82-9.46v-10.05c0-6.32-3.96-9.46-11.82-9.46h-10.64v28.96h10.64Z"
+      />
+      <path
+        fill="url(#idms-grad-m)"
+        d="M667.04,133.49h10.64l14.78,30.97,14.78-30.97h10.64v39.01h-8.28v-27.25l-13,27.25h-8.28l-13-27.25v27.25h-8.28v-39.01Z"
+      />
+      <path
+        fill="url(#idms-grad-s)"
+        d="M726.15,167.48h26.6c1.6,0,2.36-.65,2.36-1.89v-9.52c0-1.24-.77-1.89-2.36-1.89h-17.73c-5.91,0-8.87-2.36-8.87-7.09v-6.5c0-4.73,2.96-7.09,8.87-7.09h25.42v5.02h-23.64c-1.6,0-2.36.65-2.36,1.89v6.86c0,1.24.77,1.89,2.36,1.89h17.73c5.91,0,8.87,2.36,8.87,7.09v9.16c0,4.73-2.96,7.09-8.87,7.09h-28.37v-5.02Z"
+      />
     </svg>
   );
 }
 
 export default function LoginPage({ onLogin }) {
-  const [form, setForm]                 = useState({ identity: "", password: "" });
+  const [form, setForm] = useState({ identity: "", password: "" });
   const [showPassword, setShowPassword] = useState(false);
-  const [rememberMe, setRememberMe]     = useState(false);
+  const [rememberMe, setRememberMe] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [error, setError]               = useState("");
+  const [error, setError] = useState("");
 
   const submit = async (e) => {
     e.preventDefault();
@@ -80,14 +122,14 @@ export default function LoginPage({ onLogin }) {
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
         /*
-          SVG canvas: 1366 × 630
+          SVG canvas: 1366 x 630
           Card: w=450 (32.9% of 1366), h=414.61 (65.8% of 630)
 
           All measurements use --cw (card width) as the base unit so the
           card scales proportionally with the viewport, matching the SVG.
 
           --cw  = 32.94vw  (450/1366 * 100)
-          --ch  = 65.81vh  (414.61/630 * 100)  — used for fixed-height items
+          --ch  = 65.81vh  (414.61/630 * 100)  - used for fixed-height items
           --pad = 8.3% of card width (37.34/450)
         */
         :root {
@@ -176,7 +218,7 @@ export default function LoginPage({ onLogin }) {
           width: var(--logo-w);
         }
 
-        /* Pink divider — tapers at ends */
+        /* Pink divider - tapers at ends */
         .ls-divider {
           height: 1px;
           width: 78%;
@@ -280,7 +322,7 @@ export default function LoginPage({ onLogin }) {
           transform: translateY(5px);
         }
 
-        /* Left checkbox 12×12 */
+        /* Left checkbox 12x12 */
         .ls-check-label.sm input[type="checkbox"] {
           appearance: none;
           -webkit-appearance: none;
@@ -295,7 +337,7 @@ export default function LoginPage({ onLogin }) {
           position: relative;
         }
 
-        /* Right checkbox 14×14 */
+        /* Right checkbox 14x14 */
         .ls-check-label.lg input[type="checkbox"] {
           appearance: none;
           -webkit-appearance: none;
@@ -357,16 +399,22 @@ export default function LoginPage({ onLogin }) {
 
       <div className="ls-root">
         <div className="ls-bg">
-          <svg viewBox="0 0 1366 630" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
-            <rect width="1366" height="630" fill="#f5f5f5"/>
-            <polygon points="1366 254.47 683 332.23 0 254.48 0 0 1366 0" fill="#4678BE" />
+          <svg
+            viewBox="0 0 1366 630"
+            preserveAspectRatio="xMidYMid slice"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <rect width="1366" height="630" fill="#f5f5f5" />
+            <polygon
+              points="1366 254.47 683 332.23 0 254.48 0 0 1366 0"
+              fill="#4678BE"
+            />
           </svg>
         </div>
 
         <div className="ls-stage">
           <div className="ls-card">
             <div className="ls-inner">
-
               <div className="ls-brand">
                 <div className="ls-logo-wrap">
                   <IdmsLogo />
@@ -379,7 +427,6 @@ export default function LoginPage({ onLogin }) {
 
               <form onSubmit={submit}>
                 <div className="ls-fields">
-
                   <div className="ls-field">
                     <label className="ls-label">User Name</label>
                     <div className="ls-input-row">
@@ -387,7 +434,9 @@ export default function LoginPage({ onLogin }) {
                         type="text"
                         placeholder="Enter User Name"
                         value={form.identity}
-                        onChange={(e) => setForm((p) => ({ ...p, identity: e.target.value }))}
+                        onChange={(e) =>
+                          setForm((p) => ({ ...p, identity: e.target.value }))
+                        }
                         required
                       />
                     </div>
@@ -400,12 +449,13 @@ export default function LoginPage({ onLogin }) {
                         type={showPassword ? "text" : "password"}
                         placeholder="Enter Password"
                         value={form.password}
-                        onChange={(e) => setForm((p) => ({ ...p, password: e.target.value }))}
+                        onChange={(e) =>
+                          setForm((p) => ({ ...p, password: e.target.value }))
+                        }
                         required
                       />
                     </div>
                   </div>
-
                 </div>
 
                 <div className="ls-options">
@@ -429,10 +479,13 @@ export default function LoginPage({ onLogin }) {
 
                 {error && <p className="ls-error">{error}</p>}
 
-                <button className="ls-submit" type="submit" disabled={isSubmitting}>
+                <button
+                  className="ls-submit"
+                  type="submit"
+                  disabled={isSubmitting}
+                >
                   {isSubmitting ? "Signing in..." : "Login"}
                 </button>
-
               </form>
             </div>
           </div>
@@ -441,4 +494,3 @@ export default function LoginPage({ onLogin }) {
     </>
   );
 }
-

@@ -30,8 +30,8 @@ app.use(
 
       callback(new Error("Not allowed by CORS"));
     },
-    credentials: true
-  })
+    credentials: true,
+  }),
 );
 app.use(express.json());
 app.use(cookieParser());
@@ -54,7 +54,9 @@ app.get("/api/health", (req, res) => {
 
 app.use((err, req, res, next) => {
   if (err) {
-    return res.status(500).json({ message: err.message || "Internal server error" });
+    return res
+      .status(500)
+      .json({ message: err.message || "Internal server error" });
   }
   return next();
 });

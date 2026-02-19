@@ -1,122 +1,148 @@
-# Employee Management System (IDMS Assessment)
+# Employee Management System (IDMS SDE Assessment)
 
-MERN-stack Employee Management module built for the IDMS SDE technical assessment using the provided design kit (`SDE-Assessment-Kit`) and Inter font assets.
+MERN stack Employee Management module built for the IDMS technical assessment.
 
-## Stack
+## Tech Stack
+
 - Frontend: React + Vite + Axios
 - Backend: Node.js + Express + MongoDB + Mongoose
-- Auth: JWT (HTTP-only cookie + bearer token support)
-- Uploads: Multer (employee photo upload)
+- Authentication: JWT (cookie + bearer token support)
+- File Upload: Multer
 
-## Assessment Requirements Status
-Based on `assessment_pdf_text.txt` (extracted from the provided PDF), the implementation status is:
+## Assessment Scope Coverage
 
-1. Authentication module: `Done`
-- Responsive login screen
+This project implements all mandatory items from the provided PDF:
+
+1. Authentication Module
+
+- Responsive login UI
 - Email/Username + Password
-- DB-based credential validation
-- Redirect to dashboard after login
+- Database validation
+- Redirect to dashboard on success
 
-2. Dashboard layout: `Done`
+2. Dashboard Layout
+
 - Header
 - Sub-header
 - Main content area
 - Create button
 
-3. Employee creation modal + fields: `Done`
-- Full Name
-- Date of Birth
-- Email
-- Department (dropdown)
-- Phone Number
-- Designation (dropdown)
-- Gender
-- Employee Photo (file upload)
+3. Employee Creation Feature
 
-4. Backend + database: `Done`
-- REST APIs with Express
-- Structured MongoDB schema
-- Backend validations
-- Multer image upload
-- Data persisted in MongoDB
+- Modal with fields:
+  - Full Name
+  - Date of Birth
+  - Email
+  - Department (dropdown)
+  - Phone Number
+  - Designation (dropdown)
+  - Gender
+  - Employee Photo (file upload)
 
-5. Data display: `Done`
-- Employee table rendered from DB
-- Data fetched from backend APIs
+4. Backend and Database
+
+- REST APIs in Express
+- Mongoose schema and validations
+- Multer-based image upload
+- Data stored in MongoDB
+
+5. Data Display
+
+- Employee table rendered from database data
 - Photo clip icon opens uploaded image
 
-6. JWT auth (mandatory): `Done`
+6. JWT Authentication (Mandatory)
+
 - JWT generated on login
-- Stored via HTTP-only cookie (and client bearer token for split deployment)
-- Employee routes protected by auth middleware
-- Logout clears auth cookie/client token
+- Protected employee routes via middleware
+- Logout clears token
 - JWT secret from `.env`
-- Token expiry configured (`JWT_EXPIRES_IN`, default `24h`)
+- Token expiry configurable (`JWT_EXPIRES_IN`)
 
-7. Search + filters (mandatory): `Done`
+7. Search and Filter (Mandatory)
+
 - Backend case-insensitive search by name/email/department
-- Department filter
-- Designation filter
-- Gender filter
-- Search and filters combined through query params
-
-Note: Pixel-perfect UI is implemented against provided screens/assets, but final visual acceptance is still assessor-driven manual review.
+- Filters by department/designation/gender
+- Search + filters work together via query params
 
 ## Project Structure
+
 ```text
 .
-├─ client/                  # React app (UI)
-│  ├─ src/
-│  └─ public/sde-kit/       # Provided design assets + Inter font files
-├─ server/                  # Express API
-│  ├─ src/config/           # DB/JWT/admin seed
-│  ├─ src/middleware/       # Auth + validation middleware
-│  ├─ src/models/           # Mongoose schemas
-│  └─ src/routes/           # Auth + employees routes
-├─ render.yaml              # Render deployment blueprint
-├─ vercel.json              # Vercel build config (root-level)
-└─ README.md
+|-- client/
+|   |-- public/sde-kit/           # Provided assets + Inter font files
+|   `-- src/
+|       |-- components/
+|       |-- api.js
+|       `-- styles.css
+|-- server/
+|   |-- src/
+|   |   |-- config/
+|   |   |-- middleware/
+|   |   |-- models/
+|   |   `-- routes/
+|   `-- uploads/
+|-- render.yaml
+|-- vercel.json
+`-- README.md
 ```
 
+## Prerequisites
+
+- Node.js 18+ (tested with Node 22)
+- npm
+- MongoDB local or MongoDB Atlas
+
 ## Local Setup
+
 1. Install dependencies:
+
 ```bash
 npm install
 npm run install:all
 ```
 
-2. Create backend env:
+2. Create backend env file:
+
 ```bash
 copy server\.env.example server\.env
 ```
 
-3. (Optional for local, required for split deploy) create frontend env:
+3. (Optional for split deployment) create frontend env file:
+
 ```bash
 copy client\.env.example client\.env
 ```
 
-4. Ensure MongoDB is running:
-- Local URI expected by default:
+4. Start MongoDB locally (if using local DB):
+
+- Default URI used by this project:
   - `mongodb://127.0.0.1:27017/employee_management`
 
-5. Start both apps:
+5. Run both apps:
+
 ```bash
 npm run dev
 ```
 
 Local URLs:
+
 - Frontend: `http://localhost:5173`
 - Backend: `http://localhost:5000`
-- Health check: `http://localhost:5000/api/health`
+- Health: `http://localhost:5000/api/health`
 
-## Default Admin (Auto-Seeded)
-If admin does not exist, server seeds one at startup:
+## Default Admin
+
+If admin is missing, backend seeds admin on startup:
+
 - Username: `admin`
 - Email: `admin@idms.com`
-- Password: value from `ADMIN_PASSWORD` (default `admin123`)
+- Password: value from `ADMIN_PASSWORD` (default in example: `admin123`)
 
 ## Environment Variables
+
 ### Backend (`server/.env`)
+
 - `PORT=5000`
 - `MONGO_URI=mongodb://127.0.0.1:27017/employee_management`
 - `JWT_SECRET=<strong-secret>`
@@ -124,16 +150,18 @@ If admin does not exist, server seeds one at startup:
 - `COOKIE_NAME=token`
 - `CORS_ORIGIN=http://localhost:5173`
 - `NODE_ENV=development`
-- `UPLOAD_DIR=` (optional; if empty, app auto-resolves to local `uploads` folder)
+- `UPLOAD_DIR=` (optional; auto-resolves if empty)
 - `ADMIN_USERNAME=admin`
 - `ADMIN_EMAIL=admin@idms.com`
-- `ADMIN_PASSWORD=<choose-strong-password>`
+- `ADMIN_PASSWORD=<set-strong-password>`
 
 ### Frontend (`client/.env`)
+
 - `VITE_API_BASE_URL=http://localhost:5000/api`
 - `VITE_UPLOADS_BASE_URL=http://localhost:5000`
 
 ## API Endpoints
+
 - `POST /api/auth/login`
 - `POST /api/auth/logout`
 - `GET /api/auth/me`
@@ -144,46 +172,59 @@ If admin does not exist, server seeds one at startup:
 
 ## Deployment
 
-### Backend on Render
-Use `render.yaml` (recommended) or manual service with `rootDir=server`.
+### Backend (Render)
 
-Required Render env vars:
+Use `render.yaml` with `rootDir=server`.
+
+Required env vars on Render:
+
 - `MONGO_URI`
 - `JWT_SECRET`
 - `CORS_ORIGIN=https://<your-vercel-domain>`
 - `ADMIN_PASSWORD`
 
-Also set:
-- `NODE_ENV=production`
-- `JWT_EXPIRES_IN=24h`
-- `COOKIE_NAME=token`
-- `UPLOAD_DIR=/var/data/uploads` (recommended with Render persistent disk)
-- `ADMIN_USERNAME=admin`
-- `ADMIN_EMAIL=admin@idms.com`
+Recommended:
 
-Important for image persistence on Render:
-1. Add a persistent disk in Render and mount it at `/var/data`.
-2. Set `UPLOAD_DIR=/var/data/uploads`.
-3. Redeploy.
+- `UPLOAD_DIR=/var/data/uploads`
 
-### Frontend on Vercel
-This repo already includes root `vercel.json`:
-- install: `npm install --prefix client`
-- build: `npm run build --prefix client`
-- output: `client/dist`
+Important for uploaded images persistence:
 
-Set Vercel env:
+1. Add Render Persistent Disk
+2. Mount path: `/var/data`
+3. Set `UPLOAD_DIR=/var/data/uploads`
+4. Redeploy
+
+### Frontend (Vercel)
+
+Root `vercel.json` is configured for client build:
+
+- Install: `npm install --prefix client`
+- Build: `npm run build --prefix client`
+- Output: `client/dist`
+
+Set Vercel env vars:
+
 - `VITE_API_BASE_URL=https://<your-render-domain>/api`
 - `VITE_UPLOADS_BASE_URL=https://<your-render-domain>`
 
 ## Troubleshooting
-- `CORS blocked`: Render `CORS_ORIGIN` must exactly match your Vercel domain.
-- `bad auth : authentication failed`: Atlas username/password or connection string mismatch.
-- `vite: command not found` on Vercel: fixed by root `vercel.json` using client-prefixed install/build commands.
-- `EADDRINUSE:5000` locally: stop existing process on port 5000 or change backend port.
-- `Cannot GET /uploads/<file>` after restart/deploy: use Render persistent disk + `UPLOAD_DIR=/var/data/uploads`. Without persistent storage, uploaded files can disappear on redeploy/restart.
 
-## Submission Checklist
+- CORS error:
+  - Ensure Render `CORS_ORIGIN` exactly matches Vercel domain
+- Atlas auth error (`bad auth : authentication failed`):
+  - Verify MongoDB username/password and URI
+- Local port already in use (`EADDRINUSE:5000`):
+  - Stop existing process or change `PORT`
+- Upload URLs break after redeploy (`Cannot GET /uploads/...`):
+  - Configure persistent disk and `UPLOAD_DIR=/var/data/uploads`
+
+## Notes
+
+- Sidebar items like Leaves/Holidays/etc are visual items from reference layout; assessment-required CRUD/search/filter/auth are implemented in Employee section.
+- Inter font from provided kit is used.
+
+## Submission Checklist (from PDF)
+
 - Public GitHub repository link
-- README with setup instructions (this file)
-- Live deployment links (Vercel + Render) or screen recording
+- Clear README setup instructions
+- Live links (Vercel + Render) or screen recording

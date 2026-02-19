@@ -1,7 +1,9 @@
 const fs = require("fs");
 const path = require("path");
 
-const uniquePaths = (items) => [...new Set(items.filter(Boolean).map((item) => path.resolve(item)))];
+const uniquePaths = (items) => [
+  ...new Set(items.filter(Boolean).map((item) => path.resolve(item))),
+];
 
 const resolveDefaultUploadDir = () => {
   const cwd = process.cwd();
@@ -33,9 +35,10 @@ const ensureUploadDir = () => {
 
 const getLegacyUploadDirs = (primaryDir = getUploadDir()) => {
   const cwd = process.cwd();
-  return uniquePaths([path.join(cwd, "server", "uploads"), path.join(cwd, "uploads")]).filter(
-    (dir) => path.resolve(dir) !== path.resolve(primaryDir)
-  );
+  return uniquePaths([
+    path.join(cwd, "server", "uploads"),
+    path.join(cwd, "uploads"),
+  ]).filter((dir) => path.resolve(dir) !== path.resolve(primaryDir));
 };
 
 const getAllUploadDirs = () => {
@@ -47,6 +50,5 @@ module.exports = {
   getUploadDir,
   ensureUploadDir,
   getLegacyUploadDirs,
-  getAllUploadDirs
+  getAllUploadDirs,
 };
-
