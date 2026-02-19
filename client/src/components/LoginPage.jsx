@@ -174,8 +174,8 @@ export default function LoginPage({ onLogin }) {
         /* Field labels */
         .ls-label {
           display: block;
-          font-size: var(--fs-label);
-          font-weight: 400;
+          font-size: 15px;
+          font-weight: 500;
           color: #4682c8;
           letter-spacing: 0.01em;
           margin-bottom: calc(var(--ch) * 0.0193); /* ~8px */
@@ -188,7 +188,7 @@ export default function LoginPage({ onLogin }) {
           border: 0.3px solid #5a5a5a;
           border-radius: 4px;
           height: 44px;
-          padding: 0 14px;
+          padding: 0 8px;
           background: #fff;
         }
         .ls-input-row:focus-within {
@@ -199,17 +199,19 @@ export default function LoginPage({ onLogin }) {
           border: none;
           outline: none;
           background: transparent;
-          font-size: 14px;
+          font-size: 15px;
           font-weight: 500;
           line-height: 1.2;
           font-family: inherit;
           color: #4f5660;
           letter-spacing: 0.01em;
+          text-align: left;
+          padding-left: 0;
           min-width: 0;
         }
         .ls-input-row input::placeholder {
-          color: #8f97a3;
-          font-size: 13px;
+          color: #6f7885;
+          font-size: 15px;
           font-weight: 400;
           letter-spacing: 0.01em;
           opacity: 1;
