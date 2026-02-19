@@ -233,8 +233,8 @@ export default function LoginPage({ onLogin }) {
         /* Pink heading */
         .ls-welcome {
           text-align: center;
-          font-size: 13px;
-          font-weight: 400;
+          font-size: 16px;
+          font-weight: 700;
           color: #ff3296;
           letter-spacing: 0;
           margin-top: 6px;
