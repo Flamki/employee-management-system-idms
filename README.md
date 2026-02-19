@@ -2,6 +2,16 @@
 
 MERN stack Employee Management module built for the IDMS technical assessment.
 
+## Live Deployment
+
+- Frontend (Vercel): `https://employee-management-system-idms.vercel.app/`
+- Backend (Render): `https://employee-management-api-e3ib.onrender.com`
+
+## Status
+
+- Main assessment implementation is complete.
+- Core flow verified: login, employee create/edit/delete, search/filter, pagination, upload, JWT-protected routes.
+
 ## Tech Stack
 
 - Frontend: React + Vite + Axios
