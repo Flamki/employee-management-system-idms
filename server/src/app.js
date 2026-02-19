@@ -1,4 +1,3 @@
-const path = require("path");
 const fs = require("fs");
 const express = require("express");
 const cors = require("cors");
@@ -6,6 +5,7 @@ const cookieParser = require("cookie-parser");
 
 const authRoutes = require("./routes/authRoutes");
 const employeeRoutes = require("./routes/employeeRoutes");
+const { ensureUploadDir, getLegacyUploadDirs } = require("./config/uploads");
 
 const app = express();
 
@@ -36,12 +36,15 @@ app.use(
 app.use(express.json());
 app.use(cookieParser());
 
-const uploadDir = path.join(process.cwd(), "server", "uploads");
-if (!fs.existsSync(uploadDir)) {
-  fs.mkdirSync(uploadDir, { recursive: true });
-}
+const uploadDir = ensureUploadDir();
+const legacyUploadDirs = getLegacyUploadDirs(uploadDir);
 
 app.use("/uploads", express.static(uploadDir));
+legacyUploadDirs.forEach((legacyDir) => {
+  if (fs.existsSync(legacyDir)) {
+    app.use("/uploads", express.static(legacyDir));
+  }
+});
 app.use("/api/auth", authRoutes);
 app.use("/api/employees", employeeRoutes);
 

@@ -7,6 +7,7 @@ const { body, param, query } = require("express-validator");
 const Employee = require("../models/Employee");
 const authMiddleware = require("../middleware/auth");
 const validateRequest = require("../middleware/validateRequest");
+const { ensureUploadDir, getAllUploadDirs } = require("../config/uploads");
 
 const router = express.Router();
 
@@ -33,8 +34,11 @@ const dobValidation = () =>
       return true;
     });
 
+const uploadDir = ensureUploadDir();
+const uploadDirs = getAllUploadDirs();
+
 const storage = multer.diskStorage({
-  destination: (req, file, cb) => cb(null, path.join(process.cwd(), "server", "uploads")),
+  destination: (req, file, cb) => cb(null, uploadDir),
   filename: (req, file, cb) => {
     const safeName = file.originalname.replace(/\s+/g, "_").replace(/[^a-zA-Z0-9_.-]/g, "");
     cb(null, `${Date.now()}-${safeName}`);
@@ -54,11 +58,14 @@ const upload = multer({
 
 const removeUploadedPhoto = (photoPath) => {
   if (!photoPath) return;
-  const relativePhotoPath = photoPath.replace(/^\/+/, "");
-  const absolutePhotoPath = path.join(process.cwd(), "server", relativePhotoPath);
-  if (fs.existsSync(absolutePhotoPath)) {
-    fs.unlinkSync(absolutePhotoPath);
-  }
+  const fileName = path.basename(photoPath);
+  if (!fileName) return;
+  uploadDirs.forEach((dir) => {
+    const candidate = path.join(dir, fileName);
+    if (fs.existsSync(candidate)) {
+      fs.unlinkSync(candidate);
+    }
+  });
 };
 
 router.get(

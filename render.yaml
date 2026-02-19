@@ -21,6 +21,8 @@ services:
         value: 24h
       - key: COOKIE_NAME
         value: token
+      - key: UPLOAD_DIR
+        sync: false
       - key: CORS_ORIGIN
         sync: false
       - key: ADMIN_USERNAME

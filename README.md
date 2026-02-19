@@ -124,6 +124,7 @@ If admin does not exist, server seeds one at startup:
 - `COOKIE_NAME=token`
 - `CORS_ORIGIN=http://localhost:5173`
 - `NODE_ENV=development`
+- `UPLOAD_DIR=` (optional; if empty, app auto-resolves to local `uploads` folder)
 - `ADMIN_USERNAME=admin`
 - `ADMIN_EMAIL=admin@idms.com`
 - `ADMIN_PASSWORD=<choose-strong-password>`
@@ -156,8 +157,14 @@ Also set:
 - `NODE_ENV=production`
 - `JWT_EXPIRES_IN=24h`
 - `COOKIE_NAME=token`
+- `UPLOAD_DIR=/var/data/uploads` (recommended with Render persistent disk)
 - `ADMIN_USERNAME=admin`
 - `ADMIN_EMAIL=admin@idms.com`
+
+Important for image persistence on Render:
+1. Add a persistent disk in Render and mount it at `/var/data`.
+2. Set `UPLOAD_DIR=/var/data/uploads`.
+3. Redeploy.
 
 ### Frontend on Vercel
 This repo already includes root `vercel.json`:
@@ -174,6 +181,7 @@ Set Vercel env:
 - `bad auth : authentication failed`: Atlas username/password or connection string mismatch.
 - `vite: command not found` on Vercel: fixed by root `vercel.json` using client-prefixed install/build commands.
 - `EADDRINUSE:5000` locally: stop existing process on port 5000 or change backend port.
+- `Cannot GET /uploads/<file>` after restart/deploy: use Render persistent disk + `UPLOAD_DIR=/var/data/uploads`. Without persistent storage, uploaded files can disappear on redeploy/restart.
 
 ## Submission Checklist
 - Public GitHub repository link
