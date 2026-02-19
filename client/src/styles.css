@@ -587,3 +587,107 @@ img.ds-photo-link {
   justify-content: flex-end;
   align-items: center;
 }
+
+/* Final visual alignment fixes */
+.ds-brand-wrap .ds-idms-logo {
+  width: 104px;
+  height: auto;
+  display: block;
+}
+
+.ds-stage .ds-table-wrap {
+  min-height: 180px;
+}
+
+.ds-stage .ds-empty-state {
+  min-height: 140px;
+}
+
+.ds-stage .ds-table thead tr {
+  background: transparent !important;
+}
+
+.ds-stage .ds-table th {
+  background: #f9f5ff !important;
+  color: #4678be;
+  border-top: 0.75px dotted #d3d3d3;
+  border-right: 0.75px dotted #d3d3d3 !important;
+}
+
+.ds-stage .ds-table td {
+  border-right: 0.75px dotted #d3d3d3 !important;
+}
+
+.ds-stage .ds-action-btn {
+  width: 25.27px;
+  height: 14.6px;
+  border: 0.5px solid #f2b7da;
+  border-radius: 1px;
+  background: #fff;
+  padding: 0;
+}
+
+.ds-stage .ds-action-btn:disabled {
+  background: #f9f2f7;
+}
+
+.ds-stage .ds-action-icon {
+  width: 15px;
+  height: 7.5px;
+}
+
+.ds-stage .ds-pagination {
+  border: 0.5px solid #4678be;
+  background: #f7f9fd;
+}
+
+.ds-stage .ds-pagination button,
+.ds-stage .ds-pagination span {
+  background: #f7f9fd;
+}
+
+.ds-modal-overlay {
+  background: rgba(0, 0, 0, 0.4);
+}
+
+.ds-modal-panel {
+  width: 972px;
+}
+
+.ds-modal-head h2 {
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.ds-modal-head button {
+  width: 20px;
+  height: 20px;
+  font-size: 20px;
+  line-height: 1;
+  display: grid;
+  place-items: center;
+  color: #6f7781;
+}
+
+.ds-modal-divider-bottom {
+  display: none;
+}
+
+.ds-modal-foot {
+  border-top: 0.75px solid #4678be;
+}
+
+.ds-required {
+  color: #ff00c8;
+  font-style: normal;
+}
+
+.ds-date-btn img {
+  filter: grayscale(1) brightness(0.55);
+}
+
+.ds-field input,
+.ds-field select,
+.ds-file-picker {
+  border-width: 0.5px;
+}

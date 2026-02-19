@@ -186,7 +186,7 @@ export default function LoginPage({ onLogin }) {
         .ls-input-row {
           display: flex;
           align-items: center;
-          border: 1px solid #dcdfe6;
+          border: 0.5px solid #dcdfe6;
           border-radius: 4px;
           height: 44px;
           padding: 0 8px;
@@ -308,7 +308,7 @@ export default function LoginPage({ onLogin }) {
           width: 100%;
           height: 44px;
           margin-top: var(--gap-opts-btn);
-          background: #4678be;
+          background: #4678BE;
           color: #fff;
           border: none;
           border-radius: 6px;
@@ -317,9 +317,9 @@ export default function LoginPage({ onLogin }) {
           font-family: inherit;
           cursor: pointer;
           letter-spacing: 0.06em;
-          transition: background 0.12s;
+          transition: none;
         }
-        .ls-submit:hover:not(:disabled) { background: #3869ad; }
+        .ls-submit:hover:not(:disabled) { background: #4678BE; }
         .ls-submit:disabled { opacity: 0.65; cursor: not-allowed; }
       `}</style>
 
@@ -327,7 +327,7 @@ export default function LoginPage({ onLogin }) {
         <div className="ls-bg">
           <svg viewBox="0 0 1366 630" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
             <rect width="1366" height="630" fill="#f5f5f5"/>
-            <polygon points="1366,254.47 683,332.23 0,254.48 0,0 1366,0" fill="#4678be"/>
+            <path d="M0 0H1366V254C1110 276 888 311 683 332C478 311 256 276 0 254V0Z" fill="#4678BE" />
           </svg>
         </div>
 

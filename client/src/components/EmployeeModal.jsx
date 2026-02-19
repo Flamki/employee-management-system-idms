@@ -132,14 +132,16 @@ function EmployeeModal({
         <div className="ds-modal-head">
           <h2>{isEditMode ? "Edit Employee" : "Create Employee"}</h2>
           <button type="button" onClick={onClose} aria-label="Close">
-            x
+            &times;
           </button>
         </div>
         <div className="ds-modal-divider ds-modal-divider-top" aria-hidden="true" />
 
         <div className="ds-modal-body">
           <label className="ds-field">
-            <span>Full Name *</span>
+            <span>
+              Full Name <em className="ds-required">*</em>
+            </span>
             <input
               type="text"
               placeholder="Enter name"
@@ -149,7 +151,9 @@ function EmployeeModal({
           </label>
 
           <label className="ds-field">
-            <span>Email *</span>
+            <span>
+              Email <em className="ds-required">*</em>
+            </span>
             <input
               type="email"
               placeholder="Enter Email"
@@ -159,7 +163,9 @@ function EmployeeModal({
           </label>
 
           <label className="ds-field">
-            <span>Contact *</span>
+            <span>
+              Contact <em className="ds-required">*</em>
+            </span>
             <input
               type="text"
               placeholder="Enter contact"
@@ -170,7 +176,9 @@ function EmployeeModal({
           </label>
 
           <label className="ds-field">
-            <span>Gender *</span>
+            <span>
+              Gender <em className="ds-required">*</em>
+            </span>
             <select value={form.gender} onChange={(event) => setForm((prev) => ({ ...prev, gender: event.target.value }))}>
               <option value="">Select</option>
               <option value="Male">Male</option>
@@ -180,7 +188,9 @@ function EmployeeModal({
           </label>
 
           <label className="ds-field">
-            <span>Date of Birth *</span>
+            <span>
+              Date of Birth <em className="ds-required">*</em>
+            </span>
             <div className="ds-date-wrap" onClick={openDobPicker}>
               <input
                 ref={dobInputRef}
@@ -205,7 +215,9 @@ function EmployeeModal({
           </label>
 
           <label className="ds-field">
-            <span>Department *</span>
+            <span>
+              Department <em className="ds-required">*</em>
+            </span>
             <select
               value={form.department}
               onChange={(event) => setForm((prev) => ({ ...prev, department: event.target.value }))}
@@ -220,7 +232,9 @@ function EmployeeModal({
           </label>
 
           <label className="ds-field">
-            <span>Designation *</span>
+            <span>
+              Designation <em className="ds-required">*</em>
+            </span>
             <select
               value={form.designation}
               onChange={(event) => setForm((prev) => ({ ...prev, designation: event.target.value }))}
@@ -235,7 +249,9 @@ function EmployeeModal({
           </label>
 
           <label className="ds-field">
-            <span>Employee Photo {isEditMode ? "" : "*"}</span>
+            <span>
+              Employee Photo {isEditMode ? "" : <em className="ds-required">*</em>}
+            </span>
             <div
               className="ds-file-picker"
               role="button"
