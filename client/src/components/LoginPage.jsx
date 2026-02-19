@@ -7,16 +7,23 @@ function IdmsLogo() {
     <svg viewBox="600 131 165 44" xmlns="http://www.w3.org/2000/svg"
       style={{ width: "100%", height: "auto", display: "block" }}>
       <defs>
-        <linearGradient id="idms-g" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0"   stopColor="#ff00aa"/>
-          <stop offset=".48" stopColor="#f400b2"/>
-          <stop offset="1"   stopColor="#9600ff"/>
+        <linearGradient id="idms-g-d" x1="619.76" y1="133.49" x2="658.78" y2="172.50" gradientUnits="userSpaceOnUse">
+          <stop offset="0" stopColor="#4678BE" />
+          <stop offset="1" stopColor="#30C1E6" />
+        </linearGradient>
+        <linearGradient id="idms-g-m" x1="667.04" y1="133.49" x2="717.88" y2="172.50" gradientUnits="userSpaceOnUse">
+          <stop offset="0" stopColor="#30C1E6" />
+          <stop offset="1" stopColor="#7A58D1" />
+        </linearGradient>
+        <linearGradient id="idms-g-s" x1="726.15" y1="133.49" x2="763.39" y2="172.50" gradientUnits="userSpaceOnUse">
+          <stop offset="0" stopColor="#7A58D1" />
+          <stop offset="1" stopColor="#FF3296" />
         </linearGradient>
       </defs>
-      <path fill="url(#idms-g)" d="M602.61,133.49h8.28v39.01h-8.28v-39.01Z"/>
-      <path fill="url(#idms-g)" d="M619.76,133.49h20.1c12.59,0,18.92,5.02,18.92,15.13v8.75c0,10.11-6.33,15.13-18.92,15.13h-20.1v-39.01ZM638.67,167.48c7.86,0,11.82-3.13,11.82-9.46v-10.05c0-6.32-3.96-9.46-11.82-9.46h-10.64v28.96h10.64Z"/>
-      <path fill="url(#idms-g)" d="M667.04,133.49h10.64l14.78,30.97,14.78-30.97h10.64v39.01h-8.28v-27.25l-13,27.25h-8.28l-13-27.25v27.25h-8.28v-39.01Z"/>
-      <path fill="url(#idms-g)" d="M726.15,167.48h26.6c1.6,0,2.36-.65,2.36-1.89v-9.52c0-1.24-.77-1.89-2.36-1.89h-17.73c-5.91,0-8.87-2.36-8.87-7.09v-6.5c0-4.73,2.96-7.09,8.87-7.09h25.42v5.02h-23.64c-1.6,0-2.36.65-2.36,1.89v6.86c0,1.24.77,1.89,2.36,1.89h17.73c5.91,0,8.87,2.36,8.87,7.09v9.16c0,4.73-2.96,7.09-8.87,7.09h-28.37v-5.02Z"/>
+      <path fill="#4678BE" d="M602.61,133.49h8.28v39.01h-8.28v-39.01Z" />
+      <path fill="url(#idms-g-d)" d="M619.76,133.49h20.1c12.59,0,18.92,5.02,18.92,15.13v8.75c0,10.11-6.33,15.13-18.92,15.13h-20.1v-39.01ZM638.67,167.48c7.86,0,11.82-3.13,11.82-9.46v-10.05c0-6.32-3.96-9.46-11.82-9.46h-10.64v28.96h10.64Z" />
+      <path fill="url(#idms-g-m)" d="M667.04,133.49h10.64l14.78,30.97,14.78-30.97h10.64v39.01h-8.28v-27.25l-13,27.25h-8.28l-13-27.25v27.25h-8.28v-39.01Z" />
+      <path fill="url(#idms-g-s)" d="M726.15,167.48h26.6c1.6,0,2.36-.65,2.36-1.89v-9.52c0-1.24-.77-1.89-2.36-1.89h-17.73c-5.91,0-8.87-2.36-8.87-7.09v-6.5c0-4.73,2.96-7.09,8.87-7.09h25.42v5.02h-23.64c-1.6,0-2.36.65-2.36,1.89v6.86c0,1.24.77,1.89,2.36,1.89h17.73c5.91,0,8.87,2.36,8.87,7.09v9.16c0,4.73-2.96,7.09-8.87,7.09h-28.37v-5.02Z" />
     </svg>
   );
 }
@@ -60,6 +67,7 @@ export default function LoginPage({ onLogin }) {
           --pad = 8.3% of card width (37.34/450)
         */
         :root {
+          --brand-blue: #4678BE;
           --cw:  clamp(320px, 32.94vw, 600px);
           --pad: calc(var(--cw) * 0.083);
 
@@ -302,13 +310,13 @@ export default function LoginPage({ onLogin }) {
           color: #ff3296;
         }
 
-        /* Login button: h=41.7px, rx=2.41, fill=#4678be */
+        /* Login button: h=41.7px, rx=2.41, fill=#4678BE */
         .ls-submit {
           display: block;
           width: 100%;
           height: 44px;
           margin-top: var(--gap-opts-btn);
-          background: #4678BE;
+          background: var(--brand-blue);
           color: #fff;
           border: none;
           border-radius: 6px;
@@ -319,7 +327,7 @@ export default function LoginPage({ onLogin }) {
           letter-spacing: 0.06em;
           transition: none;
         }
-        .ls-submit:hover:not(:disabled) { background: #4678BE; }
+        .ls-submit:hover:not(:disabled) { background: var(--brand-blue); }
         .ls-submit:disabled { opacity: 0.65; cursor: not-allowed; }
       `}</style>
 
@@ -362,7 +370,7 @@ export default function LoginPage({ onLogin }) {
                   </div>
 
                   <div className="ls-field">
-                    <label className="ls-label">Enter Password</label>
+                    <label className="ls-label">Password</label>
                     <div className="ls-input-row">
                       <input
                         type={showPassword ? "text" : "password"}

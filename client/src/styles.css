@@ -496,7 +496,7 @@ img.ds-photo-link {
   align-items: center;
 }
 
-.ds-date-input {
+.ds-date-display {
   width: 100%;
   min-width: 0;
   height: 100%;
@@ -507,23 +507,12 @@ img.ds-photo-link {
   font-size: 11.84px;
   line-height: 27.16px;
   color: #7b7b7b;
-  caret-color: #7b7b7b;
-  appearance: none;
-  -webkit-appearance: none;
-  -moz-appearance: textfield;
+  pointer-events: none;
 }
 
-.ds-date-input::-webkit-datetime-edit,
-.ds-date-input::-webkit-datetime-edit-fields-wrapper {
-  padding: 0;
-}
-
-.ds-date-input::-webkit-clear-button,
-.ds-date-input::-webkit-inner-spin-button {
-  display: none;
-}
-
-.ds-date-input::-webkit-calendar-picker-indicator {
+.ds-date-native {
+  position: absolute;
+  inset: 0;
   opacity: 0;
   pointer-events: none;
 }
@@ -610,21 +599,66 @@ img.ds-photo-link {
 .ds-stage .ds-table th {
   background: #f9f5ff !important;
   color: #4678be;
-  border-top: 0.75px dotted #d3d3d3;
-  border-right: 0.75px dotted #d3d3d3 !important;
+  font-weight: 600;
+  border-top: 0.75px solid #4678be;
+  border-right: 0.75px solid #4678be !important;
 }
 
 .ds-stage .ds-table td {
-  border-right: 0.75px dotted #d3d3d3 !important;
+  border-right: 0.75px solid #4678be !important;
+  border-top: 0.75px solid #d3d3d3;
+}
+
+.ds-stage .ds-filter-row {
+  gap: 12px;
+}
+
+.ds-stage .ds-filter {
+  height: 26px;
+  border: 0.75px solid #4678be;
+}
+
+.ds-stage .ds-create-btn {
+  height: 26px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.ds-stage .ds-create-plus {
+  width: 10px;
+  height: 10px;
+  position: relative;
+  display: inline-block;
+}
+
+.ds-stage .ds-create-plus::before,
+.ds-stage .ds-create-plus::after {
+  content: "";
+  position: absolute;
+  background: #fff;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.ds-stage .ds-create-plus::before {
+  width: 10px;
+  height: 1.5px;
+}
+
+.ds-stage .ds-create-plus::after {
+  width: 1.5px;
+  height: 10px;
 }
 
 .ds-stage .ds-action-btn {
-  width: 25.27px;
-  height: 14.6px;
-  border: 0.5px solid #f2b7da;
-  border-radius: 1px;
+  width: 23px;
+  height: 11px;
+  border: 1px solid #cccccc;
+  border-radius: 4px;
   background: #fff;
-  padding: 0;
+  padding: 3px 6px;
 }
 
 .ds-stage .ds-action-btn:disabled {
@@ -632,31 +666,46 @@ img.ds-photo-link {
 }
 
 .ds-stage .ds-action-icon {
-  width: 15px;
-  height: 7.5px;
+  width: 11px;
+  height: 5px;
 }
 
 .ds-stage .ds-pagination {
-  border: 0.5px solid #4678be;
-  background: #f7f9fd;
+  border: 1px solid #4678be;
+  background: #fff;
+  overflow: hidden;
 }
 
 .ds-stage .ds-pagination button,
 .ds-stage .ds-pagination span {
-  background: #f7f9fd;
+  min-width: 20px;
+  height: 20px;
+  border-right: 1px solid #4678be;
+  background: #fff;
+  color: #4678be;
+}
+
+.ds-stage .ds-pagination span:nth-child(2) {
+  min-width: 40px;
+}
+
+.ds-stage .ds-pagination .ds-page-no {
+  min-width: 20px;
+  background: #4678be;
+  color: #fff;
 }
 
 .ds-modal-overlay {
-  background: rgba(0, 0, 0, 0.4);
+  background: rgba(0, 0, 0, 0.55);
 }
 
 .ds-modal-panel {
-  width: 972px;
+  width: min(956px, calc(100% - 32px));
 }
 
 .ds-modal-head h2 {
   font-size: 16px;
-  font-weight: 500;
+  font-weight: 700;
 }
 
 .ds-modal-head button {
@@ -674,7 +723,7 @@ img.ds-photo-link {
 }
 
 .ds-modal-foot {
-  border-top: 0.75px solid #4678be;
+  border-top: 1px solid #4678be;
 }
 
 .ds-required {
@@ -690,4 +739,9 @@ img.ds-photo-link {
 .ds-field select,
 .ds-file-picker {
   border-width: 0.5px;
+}
+
+.ds-modal-body {
+  width: calc(100% - 45.82px);
+  grid-template-columns: repeat(4, 1fr);
 }

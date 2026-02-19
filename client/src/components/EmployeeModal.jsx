@@ -10,6 +10,16 @@ const toDateInputValue = (value) => {
   return parsed.toISOString().slice(0, 10);
 };
 
+const formatDobDisplay = (value) => {
+  if (!value) return "";
+  const parsed = new Date(`${value}T00:00:00`);
+  if (Number.isNaN(parsed.getTime())) return "";
+  const dd = String(parsed.getDate()).padStart(2, "0");
+  const mm = String(parsed.getMonth() + 1).padStart(2, "0");
+  const yyyy = parsed.getFullYear();
+  return `${dd}-${mm}-${yyyy}`;
+};
+
 const isDateBeforeToday = (value) => {
   if (!value) return false;
   const parsed = new Date(`${value}T00:00:00`);
@@ -50,7 +60,7 @@ function EmployeeModal({
   const [form, setForm] = useState(buildInitialForm(initialValues));
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState("");
-  const dobInputRef = useRef(null);
+  const dobNativeInputRef = useRef(null);
   const fileInputRef = useRef(null);
   const maxDob = useMemo(() => getMaxDob(), []);
 
@@ -113,7 +123,7 @@ function EmployeeModal({
   };
 
   const openDobPicker = () => {
-    const input = dobInputRef.current;
+    const input = dobNativeInputRef.current;
     if (!input) return;
     if (typeof input.showPicker === "function") {
       input.showPicker();
@@ -193,12 +203,21 @@ function EmployeeModal({
             </span>
             <div className="ds-date-wrap" onClick={openDobPicker}>
               <input
-                ref={dobInputRef}
-                className="ds-date-input"
+                className="ds-date-display"
+                type="text"
+                placeholder="dd-mm-yyyy"
+                readOnly
+                value={formatDobDisplay(form.dob)}
+              />
+              <input
+                ref={dobNativeInputRef}
+                className="ds-date-native"
                 type="date"
                 max={maxDob}
                 value={form.dob}
                 onChange={(event) => setForm((prev) => ({ ...prev, dob: event.target.value }))}
+                tabIndex={-1}
+                aria-hidden="true"
               />
               <button
                 type="button"

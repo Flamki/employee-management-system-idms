@@ -39,23 +39,30 @@ function IdmsBrandLogo() {
   return (
     <svg viewBox="600 131 165 44" xmlns="http://www.w3.org/2000/svg" className="ds-idms-logo" aria-label="IDMS logo">
       <defs>
-        <linearGradient id="ds-idms-g" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0" stopColor="#ff00aa" />
-          <stop offset="0.48" stopColor="#f400b2" />
-          <stop offset="1" stopColor="#9600ff" />
+        <linearGradient id="ds-idms-g-d" x1="619.76" y1="133.49" x2="658.78" y2="172.50" gradientUnits="userSpaceOnUse">
+          <stop offset="0" stopColor="#4678BE" />
+          <stop offset="1" stopColor="#30C1E6" />
+        </linearGradient>
+        <linearGradient id="ds-idms-g-m" x1="667.04" y1="133.49" x2="717.88" y2="172.50" gradientUnits="userSpaceOnUse">
+          <stop offset="0" stopColor="#30C1E6" />
+          <stop offset="1" stopColor="#7A58D1" />
+        </linearGradient>
+        <linearGradient id="ds-idms-g-s" x1="726.15" y1="133.49" x2="763.39" y2="172.50" gradientUnits="userSpaceOnUse">
+          <stop offset="0" stopColor="#7A58D1" />
+          <stop offset="1" stopColor="#FF3296" />
         </linearGradient>
       </defs>
-      <path fill="url(#ds-idms-g)" d="M602.61,133.49h8.28v39.01h-8.28v-39.01Z" />
+      <path fill="#4678BE" d="M602.61,133.49h8.28v39.01h-8.28v-39.01Z" />
       <path
-        fill="url(#ds-idms-g)"
+        fill="url(#ds-idms-g-d)"
         d="M619.76,133.49h20.1c12.59,0,18.92,5.02,18.92,15.13v8.75c0,10.11-6.33,15.13-18.92,15.13h-20.1v-39.01ZM638.67,167.48c7.86,0,11.82-3.13,11.82-9.46v-10.05c0-6.32-3.96-9.46-11.82-9.46h-10.64v28.96h10.64Z"
       />
       <path
-        fill="url(#ds-idms-g)"
+        fill="url(#ds-idms-g-m)"
         d="M667.04,133.49h10.64l14.78,30.97,14.78-30.97h10.64v39.01h-8.28v-27.25l-13,27.25h-8.28l-13-27.25v27.25h-8.28v-39.01Z"
       />
       <path
-        fill="url(#ds-idms-g)"
+        fill="url(#ds-idms-g-s)"
         d="M726.15,167.48h26.6c1.6,0,2.36-.65,2.36-1.89v-9.52c0-1.24-.77-1.89-2.36-1.89h-17.73c-5.91,0-8.87-2.36-8.87-7.09v-6.5c0-4.73,2.96-7.09,8.87-7.09h25.42v5.02h-23.64c-1.6,0-2.36.65-2.36,1.89v6.86c0,1.24.77,1.89,2.36,1.89h17.73c5.91,0,8.87,2.36,8.87,7.09v9.16c0,4.73-2.96,7.09-8.87,7.09h-28.37v-5.02Z"
       />
     </svg>
@@ -483,7 +490,8 @@ function Dashboard({ user, onLogout }) {
                 </select>
 
                 <button type="button" className="ds-create-btn" disabled={isMutating} onClick={openCreateModal}>
-                  <span className="plus">+</span> Create
+                  <span className="ds-create-plus" aria-hidden="true" />
+                  <span>Create</span>
                 </button>
               </div>
             </div>
