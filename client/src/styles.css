@@ -157,30 +157,43 @@
 }
 
 .ds-toolbar {
+  left: 27.42px;
+  width: 1117.31px;
   justify-content: flex-start;
 }
 
 .ds-search-pill {
-  position: static;
+  position: absolute;
+  left: 0;
 }
 
 .ds-filter-row {
-  margin-left: auto;
-  position: static;
+  position: absolute;
+  right: 0;
+  top: 0;
+  margin-left: 0;
   gap: 8px;
 }
 
 .ds-filter {
-  display: inline-block;
+  width: 132px;
+  height: 24.71px;
+  font-size: 11px;
+  font-family: "Inter-Regular", "Inter", sans-serif;
+  color: #46505a;
 }
 
 .ds-filter-row .ds-create-btn {
   position: static;
   right: auto;
   top: auto;
+  width: 71.35px;
+  height: 24.71px;
+  font-size: 12.7px;
+  white-space: nowrap;
 }
 
-/* Icon sizing fix */
+/* Icon sizing fix - exact asset viewbox ratios */
 .ds-photo-link,
 .ds-photo-link img,
 img.ds-photo-link {
@@ -193,8 +206,8 @@ img.ds-photo-link {
 }
 
 .ds-action-icon {
-  width: 19.83px;
-  height: 10.54px;
+  width: 23.5px;
+  height: 11.94px;
   display: inline-block;
 }
 
@@ -228,6 +241,9 @@ img.ds-photo-link {
 }
 
 .ds-table-wrap {
+  left: 27.42px;
+  width: 1117.81px;
+  height: 286.29px;
   overflow: visible;
 }
 
@@ -249,4 +265,41 @@ img.ds-photo-link {
   background: #e4e8ee;
   color: #98a1ad;
   cursor: not-allowed;
+}
+
+/* Screen_4 table tuning */
+.ds-table {
+  table-layout: fixed;
+  font-family: "Inter-Regular", "Inter", sans-serif;
+  font-size: 12.7px;
+  color: #46505a;
+}
+
+.ds-table th,
+.ds-table td {
+  height: 31.81px;
+  min-height: 31.81px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  vertical-align: middle;
+  font-family: "Inter-Regular", "Inter", sans-serif;
+}
+
+.ds-table th {
+  background: #4678be;
+  color: #fff;
+  font-weight: 400;
+  border-right: 0.75px dotted rgba(255, 255, 255, 0.45);
+}
+
+.ds-table td {
+  border-top: 0.75px dotted #d3d3d3;
+  border-right: 0.75px dotted #d3d3d3;
+  color: #46505a;
+}
+
+.ds-table th:last-child,
+.ds-table td:last-child {
+  border-right: 0;
 }

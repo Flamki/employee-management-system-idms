@@ -342,6 +342,17 @@ function Dashboard({ user, onLogout }) {
                 <div className="ds-empty-state">Loading...</div>
               ) : employees.length ? (
                 <table className="ds-table">
+                  <colgroup>
+                    <col style={{ width: "214.58px" }} />
+                    <col style={{ width: "163.47px" }} />
+                    <col style={{ width: "106.59px" }} />
+                    <col style={{ width: "87.78px" }} />
+                    <col style={{ width: "102.67px" }} />
+                    <col style={{ width: "156.37px" }} />
+                    <col style={{ width: "158.56px" }} />
+                    <col style={{ width: "62.32px" }} />
+                    <col style={{ width: "65.47px" }} />
+                  </colgroup>
                   <thead>
                     <tr>
                       <th>Employee Name</th>
