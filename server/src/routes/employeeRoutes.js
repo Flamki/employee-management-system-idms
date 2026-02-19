@@ -13,6 +13,26 @@ const router = express.Router();
 const allowedDepartments = ["HR", "Engineering", "Finance", "Marketing", "Operations", "Admin"];
 const allowedDesignations = ["Intern", "Executive", "Manager", "Senior Manager", "Lead", "Director"];
 
+const isDateBeforeToday = (value) => {
+  const parsed = new Date(value);
+  if (Number.isNaN(parsed.getTime())) return false;
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+  return parsed < today;
+};
+
+const dobValidation = () =>
+  body("dob")
+    .isISO8601()
+    .withMessage("Date of birth is required")
+    .bail()
+    .custom((value) => {
+      if (!isDateBeforeToday(value)) {
+        throw new Error("Date of birth must be before today");
+      }
+      return true;
+    });
+
 const storage = multer.diskStorage({
   destination: (req, file, cb) => cb(null, path.join(process.cwd(), "server", "uploads")),
   filename: (req, file, cb) => {
@@ -84,7 +104,7 @@ router.post(
   upload.single("photo"),
   [
     body("fullName").trim().notEmpty().withMessage("Full name is required"),
-    body("dob").isISO8601().withMessage("Date of birth is required"),
+    dobValidation(),
     body("email").isEmail().withMessage("Valid email is required"),
     body("phoneNumber").matches(/^\d{10}$/).withMessage("Phone number must be exactly 10 digits"),
     body("department").isIn(allowedDepartments).withMessage("Department must be selected from dropdown"),
@@ -126,7 +146,7 @@ router.put(
   [
     param("employeeId").isMongoId().withMessage("Invalid employee id"),
     body("fullName").trim().notEmpty().withMessage("Full name is required"),
-    body("dob").isISO8601().withMessage("Date of birth is required"),
+    dobValidation(),
     body("email").isEmail().withMessage("Valid email is required"),
     body("phoneNumber").matches(/^\d{10}$/).withMessage("Phone number must be exactly 10 digits"),
     body("department").isIn(allowedDepartments).withMessage("Department must be selected from dropdown"),

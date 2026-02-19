@@ -10,6 +10,22 @@ const toDateInputValue = (value) => {
   return parsed.toISOString().slice(0, 10);
 };
 
+const isDateBeforeToday = (value) => {
+  if (!value) return false;
+  const parsed = new Date(`${value}T00:00:00`);
+  if (Number.isNaN(parsed.getTime())) return false;
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+  return parsed < today;
+};
+
+const getMaxDob = () => {
+  const maxDate = new Date();
+  maxDate.setHours(0, 0, 0, 0);
+  maxDate.setDate(maxDate.getDate() - 1);
+  return maxDate.toISOString().slice(0, 10);
+};
+
 const buildInitialForm = (initialValues) => ({
   fullName: initialValues?.fullName || "",
   dob: toDateInputValue(initialValues?.dob),
@@ -34,6 +50,7 @@ function EmployeeModal({
   const [form, setForm] = useState(buildInitialForm(initialValues));
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState("");
+  const maxDob = useMemo(() => getMaxDob(), []);
 
   const departmentOptions = departments.length ? departments : DEFAULT_DEPARTMENTS;
   const designationOptions = designations.length ? designations : DEFAULT_DESIGNATIONS;
@@ -47,6 +64,7 @@ function EmployeeModal({
   const firstValidationError = useMemo(() => {
     if (!form.fullName.trim()) return "Full Name is required";
     if (!form.dob) return "Date of Birth is required";
+    if (!isDateBeforeToday(form.dob)) return "Date of birth must be before today";
     if (!/^\S+@\S+\.\S+$/.test(form.email)) return "Valid email is required";
     if (!/^\d{10}$/.test(form.phoneNumber)) return "Phone number must be exactly 10 digits";
     if (!departmentOptions.includes(form.department)) return "Department must be selected from dropdown";
@@ -146,7 +164,12 @@ function EmployeeModal({
 
           <label className="ds-field">
             <span>Date of Birth *</span>
-            <input type="date" value={form.dob} onChange={(event) => setForm((prev) => ({ ...prev, dob: event.target.value }))} />
+            <input
+              type="date"
+              max={maxDob}
+              value={form.dob}
+              onChange={(event) => setForm((prev) => ({ ...prev, dob: event.target.value }))}
+            />
           </label>
 
           <label className="ds-field">
