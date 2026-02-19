@@ -164,11 +164,12 @@ export default function LoginPage({ onLogin }) {
           color: #ff3296;
           letter-spacing: 2px;
           margin-top: var(--gap-divider-title);
+          margin-bottom: 20px;
         }
 
         /* Fields container */
         .ls-fields {
-          margin-top: var(--gap-title-fields);
+          margin-top: 0;
         }
 
         /* Field labels */
@@ -185,7 +186,7 @@ export default function LoginPage({ onLogin }) {
         .ls-input-row {
           display: flex;
           align-items: center;
-          border: 0.3px solid #5a5a5a;
+          border: 1px solid #dcdfe6;
           border-radius: 4px;
           height: 44px;
           padding: 0 8px;
@@ -244,6 +245,7 @@ export default function LoginPage({ onLogin }) {
           color: #5a5a5a;
           cursor: pointer;
           user-select: none;
+          transform: translateY(5px);
         }
 
         /* Left checkbox 12×12 */

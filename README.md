@@ -1,38 +1,82 @@
-# Employee Management System (MERN)
+# Employee Management System (IDMS Assessment)
 
-Full MERN implementation for the IDMS technical assessment, using the provided design kit (`SDE-Assessment-Kit` assets and Inter font).
+MERN-stack Employee Management module built for the IDMS SDE technical assessment using the provided design kit (`SDE-Assessment-Kit`) and Inter font assets.
 
-## Tech Stack
-- Backend: Node.js, Express.js, MongoDB, Mongoose, JWT, Multer
-- Frontend: React (Vite), Axios
-- Auth: JWT (HTTP-only cookie + Bearer token fallback for cross-domain deployments)
+## Stack
+- Frontend: React + Vite + Axios
+- Backend: Node.js + Express + MongoDB + Mongoose
+- Auth: JWT (HTTP-only cookie + bearer token support)
+- Uploads: Multer (employee photo upload)
 
-## Implemented Features
-- Login with Email/Username + Password
-- JWT generation, auth middleware, protected employee routes, logout
-- Dashboard layout with header, sub-header, main content, create button
-- Employee create modal with required fields:
-  - Full Name, Date of Birth, Email, Department, Phone Number, Designation, Gender, Employee Photo
-- Mandatory validations:
-  - Valid email
-  - Phone number exactly 10 digits
-  - Department/Designation dropdown-only selections
-  - Required fields cannot be empty
-- Employee table (data fetched from DB)
-- Photo icon and action icon are functional per employee row
-- Employee row actions:
-  - Edit employee
-  - Delete employee
-- Search + combined filters (backend query params):
-  - Search by Name/Email/Department
-  - Filter by Department/Designation/Gender
-- Multer upload and static file serving from `server/uploads`
+## Assessment Requirements Status
+Based on `assessment_pdf_text.txt` (extracted from the provided PDF), the implementation status is:
+
+1. Authentication module: `Done`
+- Responsive login screen
+- Email/Username + Password
+- DB-based credential validation
+- Redirect to dashboard after login
+
+2. Dashboard layout: `Done`
+- Header
+- Sub-header
+- Main content area
+- Create button
+
+3. Employee creation modal + fields: `Done`
+- Full Name
+- Date of Birth
+- Email
+- Department (dropdown)
+- Phone Number
+- Designation (dropdown)
+- Gender
+- Employee Photo (file upload)
+
+4. Backend + database: `Done`
+- REST APIs with Express
+- Structured MongoDB schema
+- Backend validations
+- Multer image upload
+- Data persisted in MongoDB
+
+5. Data display: `Done`
+- Employee table rendered from DB
+- Data fetched from backend APIs
+- Photo clip icon opens uploaded image
+
+6. JWT auth (mandatory): `Done`
+- JWT generated on login
+- Stored via HTTP-only cookie (and client bearer token for split deployment)
+- Employee routes protected by auth middleware
+- Logout clears auth cookie/client token
+- JWT secret from `.env`
+- Token expiry configured (`JWT_EXPIRES_IN`, default `24h`)
+
+7. Search + filters (mandatory): `Done`
+- Backend case-insensitive search by name/email/department
+- Department filter
+- Designation filter
+- Gender filter
+- Search and filters combined through query params
+
+Note: Pixel-perfect UI is implemented against provided screens/assets, but final visual acceptance is still assessor-driven manual review.
 
 ## Project Structure
-- `server/` Express API (routes, middleware, models, config)
-- `client/` React app UI
-- `SDE-Assessment-Kit/` original assessment assets
-- `client/public/sde-kit/` copied assets used by app
+```text
+.
+├─ client/                  # React app (UI)
+│  ├─ src/
+│  └─ public/sde-kit/       # Provided design assets + Inter font files
+├─ server/                  # Express API
+│  ├─ src/config/           # DB/JWT/admin seed
+│  ├─ src/middleware/       # Auth + validation middleware
+│  ├─ src/models/           # Mongoose schemas
+│  └─ src/routes/           # Auth + employees routes
+├─ render.yaml              # Render deployment blueprint
+├─ vercel.json              # Vercel build config (root-level)
+└─ README.md
+```
 
 ## Local Setup
 1. Install dependencies:
@@ -41,34 +85,54 @@ npm install
 npm run install:all
 ```
 
-2. Configure backend env:
+2. Create backend env:
 ```bash
 copy server\.env.example server\.env
 ```
 
-3. Configure frontend env (optional for local, required for deployed split frontend/backend):
+3. (Optional for local, required for split deploy) create frontend env:
 ```bash
 copy client\.env.example client\.env
 ```
 
-4. Ensure MongoDB is running locally on:
-- `mongodb://127.0.0.1:27017/employee_management`
+4. Ensure MongoDB is running:
+- Local URI expected by default:
+  - `mongodb://127.0.0.1:27017/employee_management`
 
 5. Start both apps:
 ```bash
 npm run dev
 ```
 
-- Client: `http://localhost:5173`
-- Server: `http://localhost:5000`
+Local URLs:
+- Frontend: `http://localhost:5173`
+- Backend: `http://localhost:5000`
+- Health check: `http://localhost:5000/api/health`
 
-## Default Admin Credentials
-Seeded automatically on server startup (if not present):
+## Default Admin (Auto-Seeded)
+If admin does not exist, server seeds one at startup:
 - Username: `admin`
 - Email: `admin@idms.com`
-- Password: `admin123`
+- Password: value from `ADMIN_PASSWORD` (default `admin123`)
 
-## Key API Endpoints
+## Environment Variables
+### Backend (`server/.env`)
+- `PORT=5000`
+- `MONGO_URI=mongodb://127.0.0.1:27017/employee_management`
+- `JWT_SECRET=<strong-secret>`
+- `JWT_EXPIRES_IN=24h`
+- `COOKIE_NAME=token`
+- `CORS_ORIGIN=http://localhost:5173`
+- `NODE_ENV=development`
+- `ADMIN_USERNAME=admin`
+- `ADMIN_EMAIL=admin@idms.com`
+- `ADMIN_PASSWORD=<choose-strong-password>`
+
+### Frontend (`client/.env`)
+- `VITE_API_BASE_URL=http://localhost:5000/api`
+- `VITE_UPLOADS_BASE_URL=http://localhost:5000`
+
+## API Endpoints
 - `POST /api/auth/login`
 - `POST /api/auth/logout`
 - `GET /api/auth/me`
@@ -77,59 +141,41 @@ Seeded automatically on server startup (if not present):
 - `PUT /api/employees/:employeeId` (multipart/form-data)
 - `DELETE /api/employees/:employeeId`
 
-## Deployment (Render + Vercel)
-### Quick Option (Recommended)
-- Render supports this repo via `render.yaml` (root file).
-- Vercel uses `client/vercel.json` for SPA routing fallback.
+## Deployment
 
-### 1) Deploy Backend on Render
-- In Render Dashboard, create service from this GitHub repo.
-- Either:
-  - use Blueprint (`render.yaml`) directly, or
-  - create Web Service manually with root directory `server`.
-- Build command:
-```bash
-npm install
-```
-- Start command:
-```bash
-npm start
-```
-- Environment variables (Render):
-  - `PORT=5000`
-  - `MONGO_URI=<your-mongodb-uri>`
-  - `JWT_SECRET=<strong-secret>`
-  - `JWT_EXPIRES_IN=24h`
-  - `COOKIE_NAME=token`
-  - `CORS_ORIGIN=https://<your-vercel-domain>`
-  - `ADMIN_USERNAME=admin`
-  - `ADMIN_EMAIL=admin@idms.com`
-  - `ADMIN_PASSWORD=admin123`
-  - `NODE_ENV=production`
+### Backend on Render
+Use `render.yaml` (recommended) or manual service with `rootDir=server`.
 
-### 2) Deploy Frontend on Vercel
-- Import this repo in Vercel and set root directory to `client`.
-- Build command:
-```bash
-npm run build
-```
-- Output directory:
-```bash
-dist
-```
-- Environment variables (Vercel):
-  - `VITE_API_BASE_URL=https://<your-render-domain>/api`
-  - `VITE_UPLOADS_BASE_URL=https://<your-render-domain>`
+Required Render env vars:
+- `MONGO_URI`
+- `JWT_SECRET`
+- `CORS_ORIGIN=https://<your-vercel-domain>`
+- `ADMIN_PASSWORD`
 
-### 3) Verify after deploy
-- Login works
-- Dashboard loads employees
-- Create/Edit/Delete employee works
-- Photo icon opens uploaded image
-- Search and filters work together
+Also set:
+- `NODE_ENV=production`
+- `JWT_EXPIRES_IN=24h`
+- `COOKIE_NAME=token`
+- `ADMIN_USERNAME=admin`
+- `ADMIN_EMAIL=admin@idms.com`
 
-## Submission Checklist (IDMS)
+### Frontend on Vercel
+This repo already includes root `vercel.json`:
+- install: `npm install --prefix client`
+- build: `npm run build --prefix client`
+- output: `client/dist`
+
+Set Vercel env:
+- `VITE_API_BASE_URL=https://<your-render-domain>/api`
+- `VITE_UPLOADS_BASE_URL=https://<your-render-domain>`
+
+## Troubleshooting
+- `CORS blocked`: Render `CORS_ORIGIN` must exactly match your Vercel domain.
+- `bad auth : authentication failed`: Atlas username/password or connection string mismatch.
+- `vite: command not found` on Vercel: fixed by root `vercel.json` using client-prefixed install/build commands.
+- `EADDRINUSE:5000` locally: stop existing process on port 5000 or change backend port.
+
+## Submission Checklist
 - Public GitHub repository link
-- Vercel live link (frontend)
-- Render live link (backend)
-- This README with setup/deployment steps
+- README with setup instructions (this file)
+- Live deployment links (Vercel + Render) or screen recording
