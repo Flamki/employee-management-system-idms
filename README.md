@@ -78,8 +78,15 @@ Seeded automatically on server startup (if not present):
 - `DELETE /api/employees/:employeeId`
 
 ## Deployment (Render + Vercel)
+### Quick Option (Recommended)
+- Render supports this repo via `render.yaml` (root file).
+- Vercel uses `client/vercel.json` for SPA routing fallback.
+
 ### 1) Deploy Backend on Render
-- Create a new **Web Service** from repo folder `server`.
+- In Render Dashboard, create service from this GitHub repo.
+- Either:
+  - use Blueprint (`render.yaml`) directly, or
+  - create Web Service manually with root directory `server`.
 - Build command:
 ```bash
 npm install
@@ -101,7 +108,7 @@ npm start
   - `NODE_ENV=production`
 
 ### 2) Deploy Frontend on Vercel
-- Import repo and set root directory to `client`.
+- Import this repo in Vercel and set root directory to `client`.
 - Build command:
 ```bash
 npm run build
