@@ -48,6 +48,14 @@ legacyUploadDirs.forEach((legacyDir) => {
 app.use("/api/auth", authRoutes);
 app.use("/api/employees", employeeRoutes);
 
+app.get("/", (req, res) => {
+  res.json({
+    ok: true,
+    service: "employee-management-api",
+    health: "/api/health"
+  });
+});
+
 app.get("/api/health", (req, res) => {
   res.json({ ok: true });
 });
