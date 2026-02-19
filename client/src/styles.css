@@ -578,9 +578,48 @@ img.ds-photo-link {
 }
 
 /* Final visual alignment fixes */
+.ds-topbar {
+  border-bottom: 1px solid #4678be;
+}
+
+.ds-brand-wrap::after {
+  width: 1px;
+  height: 30px;
+  top: 15px;
+  background: #4678be;
+}
+
+.ds-topbar .ds-topbar-title {
+  color: #4678be;
+  font-size: 16px;
+  font-weight: 400;
+}
+
 .ds-brand-wrap .ds-idms-logo {
   width: 104px;
   height: auto;
+  display: block;
+}
+
+.ds-nav-row {
+  height: 40.71px;
+  min-height: 40.71px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.ds-user {
+  width: 32px;
+  height: 32px;
+  border: 0;
+  background: transparent;
+  padding: 0;
+}
+
+.ds-avatar-outline {
+  width: 32px;
+  height: 32px;
   display: block;
 }
 
@@ -589,7 +628,15 @@ img.ds-photo-link {
 }
 
 .ds-stage .ds-empty-state {
+  width: 100%;
   min-height: 140px;
+  font-size: 13px;
+  color: #8c8c8c;
+}
+
+.ds-stage .ds-empty-state img {
+  width: 70px;
+  opacity: 0.9;
 }
 
 .ds-stage .ds-table thead tr {
@@ -607,6 +654,10 @@ img.ds-photo-link {
 .ds-stage .ds-table td {
   border-right: 0.75px solid #4678be !important;
   border-top: 0.75px solid #d3d3d3;
+}
+
+.ds-stage .ds-table tbody tr:nth-child(even) {
+  background: #fcfaff;
 }
 
 .ds-stage .ds-filter-row {
@@ -628,37 +679,22 @@ img.ds-photo-link {
 .ds-stage .ds-create-plus {
   width: 10px;
   height: 10px;
-  position: relative;
-  display: inline-block;
+  display: block;
 }
 
-.ds-stage .ds-create-plus::before,
-.ds-stage .ds-create-plus::after {
-  content: "";
-  position: absolute;
-  background: #fff;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-}
-
-.ds-stage .ds-create-plus::before {
-  width: 10px;
-  height: 1.5px;
-}
-
-.ds-stage .ds-create-plus::after {
-  width: 1.5px;
-  height: 10px;
+.ds-stage .ds-create-plus line {
+  stroke: #fff;
+  stroke-width: 1.5;
+  stroke-linecap: round;
 }
 
 .ds-stage .ds-action-btn {
   width: 23px;
-  height: 11px;
-  border: 1px solid #cccccc;
-  border-radius: 4px;
+  height: 12px;
+  border: 1px solid #e0e0e0;
+  border-radius: 2px;
   background: #fff;
-  padding: 3px 6px;
+  padding: 2px 6px;
 }
 
 .ds-stage .ds-action-btn:disabled {
@@ -695,12 +731,28 @@ img.ds-photo-link {
   color: #fff;
 }
 
+.ds-stage .ds-total {
+  border: 1px solid #4678be;
+  height: 20px;
+  padding: 0 8px;
+  background: #fff;
+  font-size: 11px;
+}
+
+.ds-stage .ds-photo-link,
+.ds-stage .ds-photo-link img {
+  width: 20px;
+  height: 20px;
+}
+
 .ds-modal-overlay {
   background: rgba(0, 0, 0, 0.55);
+  z-index: 100;
 }
 
 .ds-modal-panel {
   width: min(956px, calc(100% - 32px));
+  z-index: 101;
 }
 
 .ds-modal-head h2 {
@@ -724,6 +776,11 @@ img.ds-photo-link {
 
 .ds-modal-foot {
   border-top: 1px solid #4678be;
+}
+
+.ds-modal-foot button {
+  width: 46px;
+  height: 21px;
 }
 
 .ds-required {

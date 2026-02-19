@@ -7,23 +7,47 @@ function IdmsLogo() {
     <svg viewBox="600 131 165 44" xmlns="http://www.w3.org/2000/svg"
       style={{ width: "100%", height: "auto", display: "block" }}>
       <defs>
-        <linearGradient id="idms-g-d" x1="619.76" y1="133.49" x2="658.78" y2="172.50" gradientUnits="userSpaceOnUse">
-          <stop offset="0" stopColor="#4678BE" />
-          <stop offset="1" stopColor="#30C1E6" />
+        <linearGradient id="idms-grad-i" x1="606.75" y1="133.49" x2="606.75" y2="172.50" gradientUnits="userSpaceOnUse">
+          <stop offset="0" stopColor="#FF00AA" />
+          <stop offset="0.1413" stopColor="#FC00AC" />
+          <stop offset="0.3068" stopColor="#F400B2" />
+          <stop offset="0.4847" stopColor="#E500BE" />
+          <stop offset="0.6713" stopColor="#D100CE" />
+          <stop offset="0.8648" stopColor="#B700E3" />
+          <stop offset="1" stopColor="#9600FF" />
         </linearGradient>
-        <linearGradient id="idms-g-m" x1="667.04" y1="133.49" x2="717.88" y2="172.50" gradientUnits="userSpaceOnUse">
-          <stop offset="0" stopColor="#30C1E6" />
-          <stop offset="1" stopColor="#7A58D1" />
+        <linearGradient id="idms-grad-d" x1="639.27" y1="133.49" x2="639.27" y2="172.50" gradientUnits="userSpaceOnUse">
+          <stop offset="0" stopColor="#FF00AA" />
+          <stop offset="0.1413" stopColor="#FC00AC" />
+          <stop offset="0.3068" stopColor="#F400B2" />
+          <stop offset="0.4847" stopColor="#E500BE" />
+          <stop offset="0.6713" stopColor="#D100CE" />
+          <stop offset="0.8648" stopColor="#B700E3" />
+          <stop offset="1" stopColor="#9600FF" />
         </linearGradient>
-        <linearGradient id="idms-g-s" x1="726.15" y1="133.49" x2="763.39" y2="172.50" gradientUnits="userSpaceOnUse">
-          <stop offset="0" stopColor="#7A58D1" />
-          <stop offset="1" stopColor="#FF3296" />
+        <linearGradient id="idms-grad-m" x1="692.46" y1="133.49" x2="692.46" y2="172.50" gradientUnits="userSpaceOnUse">
+          <stop offset="0" stopColor="#FF00AA" />
+          <stop offset="0.1413" stopColor="#FC00AC" />
+          <stop offset="0.3068" stopColor="#F400B2" />
+          <stop offset="0.4847" stopColor="#E500BE" />
+          <stop offset="0.6713" stopColor="#D100CE" />
+          <stop offset="0.8648" stopColor="#B700E3" />
+          <stop offset="1" stopColor="#9600FF" />
+        </linearGradient>
+        <linearGradient id="idms-grad-s" x1="744.77" y1="133.49" x2="744.77" y2="172.50" gradientUnits="userSpaceOnUse">
+          <stop offset="0" stopColor="#FF00AA" />
+          <stop offset="0.1413" stopColor="#FC00AC" />
+          <stop offset="0.3068" stopColor="#F400B2" />
+          <stop offset="0.4847" stopColor="#E500BE" />
+          <stop offset="0.6713" stopColor="#D100CE" />
+          <stop offset="0.8648" stopColor="#B700E3" />
+          <stop offset="1" stopColor="#9600FF" />
         </linearGradient>
       </defs>
-      <path fill="#4678BE" d="M602.61,133.49h8.28v39.01h-8.28v-39.01Z" />
-      <path fill="url(#idms-g-d)" d="M619.76,133.49h20.1c12.59,0,18.92,5.02,18.92,15.13v8.75c0,10.11-6.33,15.13-18.92,15.13h-20.1v-39.01ZM638.67,167.48c7.86,0,11.82-3.13,11.82-9.46v-10.05c0-6.32-3.96-9.46-11.82-9.46h-10.64v28.96h10.64Z" />
-      <path fill="url(#idms-g-m)" d="M667.04,133.49h10.64l14.78,30.97,14.78-30.97h10.64v39.01h-8.28v-27.25l-13,27.25h-8.28l-13-27.25v27.25h-8.28v-39.01Z" />
-      <path fill="url(#idms-g-s)" d="M726.15,167.48h26.6c1.6,0,2.36-.65,2.36-1.89v-9.52c0-1.24-.77-1.89-2.36-1.89h-17.73c-5.91,0-8.87-2.36-8.87-7.09v-6.5c0-4.73,2.96-7.09,8.87-7.09h25.42v5.02h-23.64c-1.6,0-2.36.65-2.36,1.89v6.86c0,1.24.77,1.89,2.36,1.89h17.73c5.91,0,8.87,2.36,8.87,7.09v9.16c0,4.73-2.96,7.09-8.87,7.09h-28.37v-5.02Z" />
+      <path fill="url(#idms-grad-i)" d="M602.61,133.49h8.28v39.01h-8.28v-39.01Z" />
+      <path fill="url(#idms-grad-d)" d="M619.76,133.49h20.1c12.59,0,18.92,5.02,18.92,15.13v8.75c0,10.11-6.33,15.13-18.92,15.13h-20.1v-39.01ZM638.67,167.48c7.86,0,11.82-3.13,11.82-9.46v-10.05c0-6.32-3.96-9.46-11.82-9.46h-10.64v28.96h10.64Z" />
+      <path fill="url(#idms-grad-m)" d="M667.04,133.49h10.64l14.78,30.97,14.78-30.97h10.64v39.01h-8.28v-27.25l-13,27.25h-8.28l-13-27.25v27.25h-8.28v-39.01Z" />
+      <path fill="url(#idms-grad-s)" d="M726.15,167.48h26.6c1.6,0,2.36-.65,2.36-1.89v-9.52c0-1.24-.77-1.89-2.36-1.89h-17.73c-5.91,0-8.87-2.36-8.87-7.09v-6.5c0-4.73,2.96-7.09,8.87-7.09h25.42v5.02h-23.64c-1.6,0-2.36.65-2.36,1.89v6.86c0,1.24.77,1.89,2.36,1.89h17.73c5.91,0,8.87,2.36,8.87,7.09v9.16c0,4.73-2.96,7.09-8.87,7.09h-28.37v-5.02Z" />
     </svg>
   );
 }
@@ -132,9 +156,9 @@ export default function LoginPage({ onLogin }) {
         /* Card: w=32.94vw, border=#ff3296, rx=4px, drop-shadow */
         .ls-card {
           background: #fff;
-          border: 1px solid #ff4da6;
-          border-radius: 8px;
-          box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+          border: 1px solid #ff3296;
+          border-radius: 4px;
+          box-shadow: 0 0 9px rgba(0,0,0,0.2);
           width: var(--cw);
         }
 
@@ -167,11 +191,11 @@ export default function LoginPage({ onLogin }) {
         /* Pink heading */
         .ls-welcome {
           text-align: center;
-          font-size: calc(var(--fs-heading) + 4px);
-          font-weight: 600;
+          font-size: 13px;
+          font-weight: 400;
           color: #ff3296;
-          letter-spacing: 2px;
-          margin-top: var(--gap-divider-title);
+          letter-spacing: 0;
+          margin-top: 6px;
           margin-bottom: 20px;
         }
 
@@ -335,7 +359,7 @@ export default function LoginPage({ onLogin }) {
         <div className="ls-bg">
           <svg viewBox="0 0 1366 630" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
             <rect width="1366" height="630" fill="#f5f5f5"/>
-            <path d="M0 0H1366V254C1110 276 888 311 683 332C478 311 256 276 0 254V0Z" fill="#4678BE" />
+            <polygon points="1366 254.47 683 332.23 0 254.48 0 0 1366 0" fill="#4678BE" />
           </svg>
         </div>
 
