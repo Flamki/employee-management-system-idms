@@ -447,7 +447,7 @@ img.ds-photo-link {
   width: 910px;
   grid-template-columns: repeat(4, 200.34px);
   column-gap: 36.41px;
-  row-gap: 22.5px;
+  row-gap: 14px;
 }
 
 .ds-field {
