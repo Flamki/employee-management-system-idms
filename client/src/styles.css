@@ -244,3 +244,9 @@ img.ds-photo-link {
 .ds-action-menu button:hover {
   background: #f3f8ff;
 }
+
+.ds-pagination button:disabled {
+  background: #e4e8ee;
+  color: #98a1ad;
+  cursor: not-allowed;
+}
