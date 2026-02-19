@@ -233,6 +233,11 @@ img.ds-photo-link {
   display: inline-flex;
 }
 
+.ds-action-btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
 .ds-action-menu {
   position: absolute;
   right: 0;
@@ -267,10 +272,35 @@ img.ds-photo-link {
   background: #f3f8ff;
 }
 
+.ds-action-menu button:disabled {
+  color: #9aa3af;
+  background: #f3f4f6;
+  cursor: not-allowed;
+}
+
 .ds-pagination button:disabled {
   background: #e4e8ee;
   color: #98a1ad;
   cursor: not-allowed;
+}
+
+.ds-search-pill input:disabled,
+.ds-filter:disabled,
+.ds-create-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.ds-table-loading-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 7;
+  display: grid;
+  place-items: center;
+  background: rgba(255, 255, 255, 0.58);
+  color: #4678be;
+  font-size: 12px;
+  pointer-events: none;
 }
 
 /* Screen_4 table tuning */
@@ -396,7 +426,8 @@ img.ds-photo-link {
 }
 
 .ds-modal-divider-bottom {
-  top: 191.46px;
+  top: auto;
+  bottom: 37px;
 }
 
 .ds-modal-head h2 {

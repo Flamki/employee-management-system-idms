@@ -35,6 +35,29 @@ const TABLE_BODY_ROW_HEIGHT = 31.81;
 const DEFAULT_DEPARTMENTS = ["HR", "Engineering", "Finance", "Marketing", "Operations", "Admin"];
 const DEFAULT_DESIGNATIONS = ["Intern", "Executive", "Manager", "Senior Manager", "Lead", "Director"];
 
+const normalizeText = (value = "") => String(value).trim().toLowerCase();
+
+const employeeMatchesFilters = (employee, activeFilters) => {
+  const search = normalizeText(activeFilters.search);
+  const department = normalizeText(activeFilters.department);
+  const designation = normalizeText(activeFilters.designation);
+  const gender = normalizeText(activeFilters.gender);
+
+  if (search) {
+    const matchesSearch =
+      normalizeText(employee.fullName).includes(search) ||
+      normalizeText(employee.email).includes(search) ||
+      normalizeText(employee.department).includes(search);
+    if (!matchesSearch) return false;
+  }
+
+  if (department && normalizeText(employee.department) !== department) return false;
+  if (designation && normalizeText(employee.designation) !== designation) return false;
+  if (gender && normalizeText(employee.gender) !== gender) return false;
+
+  return true;
+};
+
 function Dashboard({ user, onLogout }) {
   const [scale, setScale] = useState(1);
   const [filters, setFilters] = useState(DEFAULT_FILTERS);
@@ -45,10 +68,15 @@ function Dashboard({ user, onLogout }) {
   const [editingEmployee, setEditingEmployee] = useState(null);
   const [activeActionMenuId, setActiveActionMenuId] = useState(null);
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
-  const [loading, setLoading] = useState(false);
+  const [isInitialLoading, setIsInitialLoading] = useState(true);
+  const [isRefreshing, setIsRefreshing] = useState(false);
+  const [isMutating, setIsMutating] = useState(false);
+  const [deletingEmployeeId, setDeletingEmployeeId] = useState("");
   const [error, setError] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
-  const hasAppliedInitialFilters = useRef(false);
+  const hasBootstrappedFilters = useRef(false);
+  const fetchAbortRef = useRef(null);
+  const fetchRequestIdRef = useRef(0);
   const userMenuRef = useRef(null);
 
   useEffect(() => {
@@ -62,43 +90,67 @@ function Dashboard({ user, onLogout }) {
     return () => window.removeEventListener("resize", applyScale);
   }, []);
 
-  const fetchEmployees = async (activeFilters = filters) => {
-    setLoading(true);
+  const fetchEmployees = async (activeFilters = filters, options = {}) => {
+    const { initial = false } = options;
+    const requestId = fetchRequestIdRef.current + 1;
+    fetchRequestIdRef.current = requestId;
+
+    fetchAbortRef.current?.abort();
+    const controller = new AbortController();
+    fetchAbortRef.current = controller;
+
+    if (initial) {
+      setIsInitialLoading(true);
+    } else {
+      setIsRefreshing(true);
+    }
+
     setError("");
+
     try {
       const params = Object.fromEntries(Object.entries(activeFilters).filter(([, value]) => value));
-      const response = await api.get("/employees", { params });
-      setEmployees(response.data.employees);
-      setMeta(response.data.meta);
+      const response = await api.get("/employees", { params, signal: controller.signal });
+      if (fetchRequestIdRef.current !== requestId) return;
+      setEmployees(Array.isArray(response.data.employees) ? response.data.employees : []);
+      if (response.data.meta) {
+        setMeta(response.data.meta);
+      }
     } catch (requestError) {
+      if (requestError?.code === "ERR_CANCELED") return;
+      if (fetchRequestIdRef.current !== requestId) return;
       setError(requestError.response?.data?.message || "Failed to load employees");
     } finally {
-      setLoading(false);
+      if (fetchRequestIdRef.current !== requestId) return;
+      if (initial) {
+        setIsInitialLoading(false);
+      } else {
+        setIsRefreshing(false);
+      }
     }
   };
 
   useEffect(() => {
-    fetchEmployees(DEFAULT_FILTERS);
+    fetchEmployees(DEFAULT_FILTERS, { initial: true });
+
+    return () => {
+      fetchAbortRef.current?.abort();
+    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
-    if (!hasAppliedInitialFilters.current) {
-      hasAppliedInitialFilters.current = true;
+    if (!hasBootstrappedFilters.current) {
+      hasBootstrappedFilters.current = true;
       return;
     }
-    fetchEmployees(filters);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [filters.department, filters.designation, filters.gender]);
 
-  useEffect(() => {
     const timeoutId = setTimeout(() => {
       fetchEmployees(filters);
-    }, 300);
+    }, 250);
 
     return () => clearTimeout(timeoutId);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [filters.search]);
+  }, [filters.search, filters.department, filters.designation, filters.gender]);
 
   useEffect(() => {
     if (!isUserMenuOpen) return;
@@ -217,32 +269,73 @@ function Dashboard({ user, onLogout }) {
     if (!shouldDelete) return;
 
     setError("");
+    setDeletingEmployeeId(employee._id);
+    const previousEmployees = employees;
+    setEmployees((prev) => prev.filter((item) => item._id !== employee._id));
+
     try {
       await api.delete(`/employees/${employee._id}`);
-      await fetchEmployees(filters);
     } catch (requestError) {
+      setEmployees(previousEmployees);
       setError(requestError.response?.data?.message || "Failed to delete employee");
+    } finally {
+      setDeletingEmployeeId("");
     }
   };
 
   const createEmployee = async (payload) => {
-    await api.post("/employees", payload, {
-      headers: { "Content-Type": "multipart/form-data" }
-    });
-
-    closeModal();
-    await fetchEmployees(filters);
+    setError("");
+    setIsMutating(true);
+    try {
+      const response = await api.post("/employees", payload, {
+        headers: { "Content-Type": "multipart/form-data" }
+      });
+      const createdEmployee = response.data?.employee;
+      if (createdEmployee && employeeMatchesFilters(createdEmployee, filters)) {
+        setEmployees((prev) => [createdEmployee, ...prev]);
+      }
+      closeModal();
+    } catch (requestError) {
+      throw requestError;
+    } finally {
+      setIsMutating(false);
+    }
   };
 
   const updateEmployee = async (payload) => {
     if (!editingEmployee?._id) return;
 
-    await api.put(`/employees/${editingEmployee._id}`, payload, {
-      headers: { "Content-Type": "multipart/form-data" }
-    });
+    setError("");
+    setIsMutating(true);
+    try {
+      const response = await api.put(`/employees/${editingEmployee._id}`, payload, {
+        headers: { "Content-Type": "multipart/form-data" }
+      });
+      const updatedEmployee = response.data?.employee;
 
-    closeModal();
-    await fetchEmployees(filters);
+      if (updatedEmployee) {
+        setEmployees((prev) => {
+          const exists = prev.some((item) => item._id === updatedEmployee._id);
+          const matches = employeeMatchesFilters(updatedEmployee, filters);
+
+          if (!matches) {
+            return prev.filter((item) => item._id !== updatedEmployee._id);
+          }
+
+          if (!exists) {
+            return [updatedEmployee, ...prev];
+          }
+
+          return prev.map((item) => (item._id === updatedEmployee._id ? updatedEmployee : item));
+        });
+      }
+
+      closeModal();
+    } catch (requestError) {
+      throw requestError;
+    } finally {
+      setIsMutating(false);
+    }
   };
 
   const shellStyle = useMemo(
@@ -305,6 +398,7 @@ function Dashboard({ user, onLogout }) {
                 <input
                   type="text"
                   placeholder="Search..."
+                  disabled={isMutating}
                   value={filters.search}
                   onChange={(event) => setFilters((prev) => ({ ...prev, search: event.target.value }))}
                 />
@@ -313,6 +407,7 @@ function Dashboard({ user, onLogout }) {
               <div className="ds-filter-row">
                 <select
                   className="ds-filter"
+                  disabled={isMutating}
                   value={filters.department}
                   onChange={(event) => setFilters((prev) => ({ ...prev, department: event.target.value }))}
                 >
@@ -326,6 +421,7 @@ function Dashboard({ user, onLogout }) {
 
                 <select
                   className="ds-filter"
+                  disabled={isMutating}
                   value={filters.designation}
                   onChange={(event) => setFilters((prev) => ({ ...prev, designation: event.target.value }))}
                 >
@@ -339,6 +435,7 @@ function Dashboard({ user, onLogout }) {
 
                 <select
                   className="ds-filter"
+                  disabled={isMutating}
                   value={filters.gender}
                   onChange={(event) => setFilters((prev) => ({ ...prev, gender: event.target.value }))}
                 >
@@ -348,7 +445,7 @@ function Dashboard({ user, onLogout }) {
                   <option value="Other">Other</option>
                 </select>
 
-                <button type="button" className="ds-create-btn" onClick={openCreateModal}>
+                <button type="button" className="ds-create-btn" disabled={isMutating} onClick={openCreateModal}>
                   <span className="plus">+</span> Create
                 </button>
               </div>
@@ -358,8 +455,8 @@ function Dashboard({ user, onLogout }) {
               className="ds-table-wrap"
               style={employees.length ? { height: `${tableWrapHeight}px` } : undefined}
             >
-              {loading ? (
-                <div className="ds-empty-state">Loading...</div>
+              {isInitialLoading && !employees.length ? (
+                <div className="ds-empty-state">Loading employees...</div>
               ) : employees.length ? (
                 <table className="ds-table">
                   <colgroup>
@@ -406,6 +503,7 @@ function Dashboard({ user, onLogout }) {
                             <button
                               type="button"
                               className="ds-action-btn"
+                              disabled={deletingEmployeeId === employee._id}
                               onClick={() =>
                                 setActiveActionMenuId((prev) => (prev === employee._id ? null : employee._id))
                               }
@@ -414,11 +512,19 @@ function Dashboard({ user, onLogout }) {
                             </button>
                             {activeActionMenuId === employee._id ? (
                               <div className="ds-action-menu">
-                                <button type="button" onClick={() => openEditModal(employee)}>
+                                <button
+                                  type="button"
+                                  disabled={deletingEmployeeId === employee._id}
+                                  onClick={() => openEditModal(employee)}
+                                >
                                   Edit
                                 </button>
-                                <button type="button" onClick={() => deleteEmployee(employee)}>
-                                  Delete
+                                <button
+                                  type="button"
+                                  disabled={deletingEmployeeId === employee._id}
+                                  onClick={() => deleteEmployee(employee)}
+                                >
+                                  {deletingEmployeeId === employee._id ? "Deleting..." : "Delete"}
                                 </button>
                               </div>
                             ) : null}
@@ -434,6 +540,7 @@ function Dashboard({ user, onLogout }) {
                   <p>No Records to be displayed</p>
                 </div>
               )}
+              {isRefreshing ? <div className="ds-table-loading-overlay">Refreshing data...</div> : null}
             </section>
 
             {error ? <div className="ds-error">{error}</div> : null}
