@@ -150,6 +150,7 @@ function Dashboard({ user, onLogout }) {
   const [isRefreshing, setIsRefreshing] = useState(false);
   const [isMutating, setIsMutating] = useState(false);
   const [deletingEmployeeId, setDeletingEmployeeId] = useState("");
+  const [deleteTarget, setDeleteTarget] = useState(null);
   const [error, setError] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const hasBootstrappedFilters = useRef(false);
@@ -341,10 +342,21 @@ function Dashboard({ user, onLogout }) {
     setActiveActionMenuId(null);
   };
 
-  const deleteEmployee = async (employee) => {
+  const requestDeleteEmployee = (employee) => {
     setActiveActionMenuId(null);
-    const shouldDelete = window.confirm(`Delete employee "${employee.fullName}"?`);
-    if (!shouldDelete) return;
+    setDeleteTarget(employee);
+  };
+
+  const cancelDeleteEmployee = () => {
+    if (deletingEmployeeId) return;
+    setDeleteTarget(null);
+  };
+
+  const confirmDeleteEmployee = async () => {
+    if (!deleteTarget?._id) return;
+
+    const employee = deleteTarget;
+    setDeleteTarget(null);
 
     setError("");
     setDeletingEmployeeId(employee._id);
@@ -534,7 +546,7 @@ function Dashboard({ user, onLogout }) {
             </div>
 
             <section
-              className="ds-table-wrap"
+              className={`ds-table-wrap ${employees.length ? "has-data" : "is-empty"}`}
               style={employees.length ? { height: `${tableWrapHeight}px` } : undefined}
             >
               {isInitialLoading && !employees.length ? (
@@ -604,7 +616,7 @@ function Dashboard({ user, onLogout }) {
                                 <button
                                   type="button"
                                   disabled={deletingEmployeeId === employee._id}
-                                  onClick={() => deleteEmployee(employee)}
+                                  onClick={() => requestDeleteEmployee(employee)}
                                 >
                                   {deletingEmployeeId === employee._id ? "Deleting..." : "Delete"}
                                 </button>
@@ -668,6 +680,25 @@ function Dashboard({ user, onLogout }) {
               mode={modalMode}
               initialValues={editingEmployee}
             />
+          ) : null}
+
+          {deleteTarget ? (
+            <div className="ds-confirm-overlay" role="dialog" aria-modal="true" aria-label="Delete confirmation">
+              <div className="ds-confirm-panel">
+                <h3>Delete Employee</h3>
+                <p>
+                  Are you sure you want to delete <strong>{deleteTarget.fullName}</strong>?
+                </p>
+                <div className="ds-confirm-actions">
+                  <button type="button" className="ds-confirm-cancel" onClick={cancelDeleteEmployee} disabled={Boolean(deletingEmployeeId)}>
+                    Cancel
+                  </button>
+                  <button type="button" className="ds-confirm-delete" onClick={confirmDeleteEmployee} disabled={Boolean(deletingEmployeeId)}>
+                    {deletingEmployeeId ? "Deleting..." : "Delete"}
+                  </button>
+                </div>
+              </div>
+            </div>
           ) : null}
         </div>
       </div>

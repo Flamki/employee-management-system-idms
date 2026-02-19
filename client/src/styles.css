@@ -847,3 +847,75 @@ img.ds-photo-link {
 .ds-stage .ds-table td:last-child {
   border-right: 0 !important;
 }
+
+.ds-stage .ds-table-wrap.is-empty {
+  min-height: 180px;
+}
+
+.ds-stage .ds-table-wrap.has-data {
+  min-height: 0;
+}
+
+.ds-confirm-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 130;
+  background: rgba(0, 0, 0, 0.5);
+  display: grid;
+  place-items: center;
+}
+
+.ds-confirm-panel {
+  width: 340px;
+  max-width: calc(100% - 36px);
+  background: #fff;
+  border: 1px solid #4678be;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+  padding: 16px;
+  color: #46505a;
+}
+
+.ds-confirm-panel h3 {
+  margin: 0 0 8px;
+  color: #4678be;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.ds-confirm-panel p {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+.ds-confirm-actions {
+  margin-top: 14px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.ds-confirm-actions button {
+  height: 28px;
+  min-width: 72px;
+  border-radius: 2px;
+  border: 1px solid #4678be;
+  font-size: 12px;
+  padding: 0 10px;
+}
+
+.ds-confirm-cancel {
+  background: #fff;
+  color: #4678be;
+}
+
+.ds-confirm-delete {
+  background: #4678be;
+  color: #fff;
+}
+
+.ds-confirm-actions button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
