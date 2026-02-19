@@ -3,6 +3,7 @@ const express = require("express");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
 
+const { getDatabaseStatus } = require("./config/db");
 const authRoutes = require("./routes/authRoutes");
 const employeeRoutes = require("./routes/employeeRoutes");
 const { ensureUploadDir, getLegacyUploadDirs } = require("./config/uploads");
@@ -49,15 +50,25 @@ app.use("/api/auth", authRoutes);
 app.use("/api/employees", employeeRoutes);
 
 app.get("/", (req, res) => {
+  const database = getDatabaseStatus();
+
   res.json({
     ok: true,
     service: "employee-management-api",
-    health: "/api/health"
+    health: "/api/health",
+    database,
   });
 });
 
 app.get("/api/health", (req, res) => {
-  res.json({ ok: true });
+  const database = getDatabaseStatus();
+  const ok = database.status === "connected";
+
+  res.status(ok ? 200 : 503).json({
+    ok,
+    database,
+    timestamp: new Date().toISOString(),
+  });
 });
 
 app.use((err, req, res, next) => {

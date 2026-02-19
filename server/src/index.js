@@ -3,7 +3,7 @@ const dotenv = require("dotenv");
 dotenv.config();
 
 const app = require("./app");
-const connectDB = require("./config/db");
+const { connectDB } = require("./config/db");
 const seedAdmin = require("./config/seedAdmin");
 
 const port = process.env.PORT || 5000;
